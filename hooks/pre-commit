@@ -25,6 +25,8 @@ echo "Site copied" ;
 rm -rf admin/windwalker
 mkdir admin/windwalker
 cp -rf /var/www/$SITE/libraries/windwalker/ admin/windwalker
+rm -rf admin/windwalker/.git
+rm -f admin/windwalker/.gitignore
 echo "Lib copied" ;
 
 # Set Template
@@ -76,7 +78,7 @@ mv tmpl/component/init.site/sql tmpl/component/subsystem.site
 # cp -rf /var/www/$SITE/plugins/$GUP/$PLG/ plugins/plg_$GUP\_$PLG
 # echo "Plugin copied" ;
 
-sleep 1
+
 git add .
 echo "Execute git add" ;
 
