@@ -83,7 +83,7 @@ if($app->isAdmin()) {
 	}
 </script>
 
-<div id="flower-sakura-edit" class="<?php echo (JVERSION >= 3) ? 'joomla30' : 'joomla25' ?>">
+<div id="Flower" class="windwalker sakura editform <?php echo (JVERSION >= 3) ? 'joomla30' : 'joomla25' ?>">
 
 <form action="<?php echo JRoute::_( JFactory::getURI()->toString() ); ?>" method="post" name="adminForm" id="sakura-form" class="form-validate" enctype="multipart/form-data">	
 	
