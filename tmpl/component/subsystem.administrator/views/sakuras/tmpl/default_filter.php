@@ -27,7 +27,7 @@ if( JVERSION >= 3 ) {
 <div id="filter-bar" class="btn-toolbar">
 	<!-- Search Input -->
 	
-	<div id="search-bar">
+	<div id="search-bar" class="pull-left fltlft">
 		<div class="btn-group pull-left fltlft">
 			<?php
 				$field = $this->filter['search']->getField('field') ;
@@ -72,7 +72,7 @@ if( JVERSION >= 3 ) {
 		<?php else: ?>
 		
 			<button type="btn submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
-			<button type="btn button" onclick="document.id('search_index').value='';this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
+			<button type="btn button" onclick="$$('#search-bar input').set('value', '');this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
 		
 		<?php endif; ?>	
 	</div>

@@ -65,7 +65,7 @@ class FlowerModelSakuras extends AKModelList
 		
 		// Other settings
 		// ========================================================================
-		$config['fulltext_search'] 	= false ;
+		$config['fulltext_search'] 	= true ;
 		
 		$config['core_sidebar'] 	= false ;
 		
@@ -266,7 +266,7 @@ class FlowerModelSakuras extends AKModelList
 		// Set ignore fields, and you can set yourself search later.
 		if(!$ignore) {
 			$ignore = array(
-				'a.title',
+				// 'a.title',
 				// 'b.title'
 			);
 		}
