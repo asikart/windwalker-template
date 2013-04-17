@@ -196,12 +196,9 @@ class FlowerModelSakuras extends AKModelList
 		
 		// Filter
 		// ========================================================================
-		foreach($filter as $k => $v ){
-			if($v !== '' && $v != '*'){
-				$k = $db->qn($k);
-				$q->where("{$k}='{$v}'") ;
-			}
-		}
+		$q = $this->filterCondition( $filter, $q ) ;
+		
+		
 		
 		// published
 		if(empty($filter['a.published'])){
@@ -264,8 +261,48 @@ class FlowerModelSakuras extends AKModelList
 	 * @param $q
 	 */
 	
-	public function searchCondition($search, $q = null)
+	public function searchCondition($search, $q = null, $ignore = array())
 	{
-		return parent::seasearchCondition($search, $q);
+		// Set ignore fields, and you can set yourself search later.
+		if(!$ignore) {
+			$ignore = array(
+				'a.title',
+				// 'b.title'
+			);
+		}
+		
+		$q = parent::searchCondition($search, $q, $ignore);
+		
+		// Do some another filter here
+		
+		
+		
+		return $q ;
+	}
+	
+	
+	
+	/*
+	 * function filterCondition
+	 * @param $filter
+	 */
+	
+	public function filterCondition($filter, $q = null, $ignore = array())
+	{
+		// Set ignore fields, and you can set yourself filter later.
+		if(!$ignore) {
+			$ignore = array(
+				// 'a.published',
+				// 'b.id'
+			);
+		}
+		
+		$q = parent::filterCondition($filter, $q, $ignore);
+		
+		// Do some another filter here
+		
+		
+		
+		return $q ;
 	}
 }
