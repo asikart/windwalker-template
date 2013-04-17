@@ -55,7 +55,7 @@ class FlowerModelSakuras extends AKModelList
 		// ========================================================================
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = array(
-                'filter_order_Dir', 'filter_order'
+                'filter_order_Dir', 'filter_order', '*'
             );
 			
             $config['filter_fields'] = FlowerHelper::_('db.mergeFilterFields', $config['filter_fields'] , $config['tables'] );
@@ -65,7 +65,7 @@ class FlowerModelSakuras extends AKModelList
 		
 		// Other settings
 		// ========================================================================
-		$config['fulltext_search'] 	= true ;
+		$config['fulltext_search'] 	= false ;
 		
 		$config['core_sidebar'] 	= false ;
 		
@@ -157,7 +157,7 @@ class FlowerModelSakuras extends AKModelList
 		$order 		= $this->getState('list.ordering' , 'a.id');
 		$dir		= $this->getState('list.direction', 'asc');
 		$prefix 	= $this->getState('list.orderingPrefix', array()) ;
-		$orderCol	=$this->getState('list.orderCol','a.ordering') ;
+		$orderCol	= $this->getState('list.orderCol','a.ordering') ;
 
 		// Filter and Search
 		$filter = $this->getState('filter',array()) ;
@@ -190,23 +190,7 @@ class FlowerModelSakuras extends AKModelList
 		
 		// Search
 		// ========================================================================
-		if($search['index']){
-			
-			if($this->getState( 'search.fulltext' )){
-				$fields = $this->getFullSearchFields();
-				
-				foreach( $fields as &$field ):
-					$field = "{$field} LIKE '%{$search['index']}%'" ;
-				endforeach;
-				
-				if(count($fields))
-				$q->where( "( ".implode(' OR ', $fields )." )" );
-				
-			}else{
-				$q->where("{$search['field']} LIKE '%{$search['index']}%'");
-			}
-			
-		}
+		$q = $this->searchCondition( $search, $q ) ;
 		
 		
 		
@@ -221,7 +205,7 @@ class FlowerModelSakuras extends AKModelList
 		
 		// published
 		if(empty($filter['a.published'])){
-			$q->where("a.published >= 0") ;
+			$q->where("{$db->qn('a.published')} >= 0") ;
 		}
 		
 		
@@ -271,5 +255,17 @@ class FlowerModelSakuras extends AKModelList
 			->order( "{$prefix}{$order} {$dir}" ) ;
 		
 		return $q;
+	}
+	
+	
+	
+	/*
+	 * function searchCondition
+	 * @param $q
+	 */
+	
+	public function searchCondition($search, $q = null)
+	{
+		return parent::seasearchCondition($search, $q);
 	}
 }
