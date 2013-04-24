@@ -328,6 +328,6 @@ var AKQuickEdit = ({
 	}
 }) ;
 
-AKQuickEdit.profiler = false ;
+AKQuickEdit.profiler = true ;
 
 

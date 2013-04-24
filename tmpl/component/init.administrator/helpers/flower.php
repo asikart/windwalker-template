@@ -26,56 +26,65 @@ class FlowerHelper extends AKProxy
 	{		
 		jimport('joomla.filesystem.folder');
 		jimport('joomla.filesystem.file');
-		$app = JFactory::getApplication() ;
+		$app 	= JFactory::getApplication() ;
 		
-		if(JVERSION >= 3):
+		$menus = array() ;
 		
-			if($app->isAdmin()) {
-				JHtmlSidebar::addEntry(
-					JText::_('JCATEGORY'),
-					'index.php?option=com_categories&extension=com_flower',
-					$vName == 'categories'
+		// Add Category Menu Item
+		if($app->isAdmin()) {
+			$menus['category'] = array(
+				'title' 	=> JText::_('JCATEGORY'),
+				'url' 		=> 'index.php?option=com_categories&extension=com_flower',
+				'active' 	=> ( $vName == 'categories' )
+			);
+		}
+		
+		
+		// Add View List Menu Items
+		$folders = JFolder::folders(JPATH_ADMINISTRATOR.'/components/com_flower/views');
+		
+		foreach( $folders as $folder ){
+			
+			// Only show ViewList
+			if( substr($folder, -2) == 'es' || substr($folder, -1) == 's'){
+				
+				$menus[$folder] = array(
+					'title' 	=> AKDEV ? ucfirst($folder) . ' ' . JText::_('COM_FLOWER_TITLE_LIST') : JText::_('COM_FLOWER_' . strtoupper($folder) . '_TITLE' ),
+					'url' 		=> 'index.php?option=com_flower&view='.$folder,
+					'active' 	=> ( $vName == $folder )
 				);
+				
 			}
-			
-			
-			$folders = JFolder::folders(JPATH_ADMINISTRATOR.'/components/com_flower/views');
-			
-			foreach( $folders as $folder ){
-				if( substr($folder, -2) == 'is' || substr($folder, -1) == 's'){
-					JHtmlSidebar::addEntry(
-						ucfirst($folder) . ' ' . JText::_('COM_FLOWER_TITLE_LIST'),
-						'index.php?option=com_flower&view='.$folder,
-						$vName == $folder
-					);
-				}
-			}
+		}
 		
-		else:
-			
-			if($app->isAdmin()) {
-				JSubMenuHelper::addEntry(
-					JText::_('JCATEGORY'),
-					'index.php?option=com_categories&extension=com_flower',
-					$vName == 'categories'
-				);
-			}
-			
-			$folders = JFolder::folders(JPATH_ADMINISTRATOR.'/components/com_flower/views');
-			
-			foreach( $folders as $folder ){
-				if( substr($folder, -2) == 'is' || substr($folder, -1) == 's'){
-					JSubMenuHelper::addEntry(
-						ucfirst($folder) . ' ' . JText::_('COM_FLOWER_TITLE_LIST'),
-						'index.php?option=com_flower&view='.$folder,
-						$vName == $folder
-					);
-				}
-			}
-			
-		endif;
+		
+		// Trigger for plugin
+		$app->triggerEvent( 'onAddSubmenu' , array( 'com_flower.panel' , &$menus)) ;
+		
+		
+		// AddSubmenu
+		foreach( $menus as $menu ):
+			self::addSubmenuEntry( $menu['title'], $menu['url'], $menu['active'] );
+		endforeach;
 		
 	}
+	
+	
+	
+	/*
+	 * function addSubmenu
+	 * @param $menu
+	 */
+	
+	public static function addSubmenuEntry($title, $url = '#', $active = false)
+	{
+		if( JVERSION >= 3 ) {
+			JHtmlSidebar::addEntry( $title, $url, $active );
+		}else{
+			JSubMenuHelper::addEntry( $title, $url, $active );
+		}
+	}
+	
 	
 	
 	/**

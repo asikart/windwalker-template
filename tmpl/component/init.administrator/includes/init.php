@@ -61,5 +61,6 @@ if( $app->isSite() ){
 FlowerHelper::_('plugin.attachPlugins');
 
 // Debug
-define('AKDEBUG', FlowerHelper::_('system.getConfig', 'system.debug')) ;
+define('AKDEBUG', FlowerHelper::_('system.getConfig', 'system.debug', false, 'com_flower')) ;
+define('AKDEV', FlowerHelper::_('system.getConfig', 'system.development_mode', true, 'com_flower')) ;
 

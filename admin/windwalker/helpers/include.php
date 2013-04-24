@@ -246,6 +246,6 @@ JS;
 		$view 	= JRequest::getVar('view') ;
 		
 		$doc = JFactory::getDocument();
-		$doc->addScriptDeclaration('AKQuickEdit.init( { "option" : "'.$option.'", "view" : "'.$view.'" } )');
+		$doc->addScriptDeclaration('AKQuickEdit.init( { "option" : "'.$option.'", "view" : "'.$view.'" } );');
 	}
 }

@@ -64,7 +64,12 @@ class FlowerViewSakura extends AKViewItem
 	 */
 	protected function addToolbar()
 	{
-		AKToolBarHelper::title( 'Sakura' . ' ' . JText::_('COM_FLOWER_TITLE_ITEM_EDIT'), 'article-add.png');
+		// Set title.
+		$title = AKDEV
+				? ucfirst($this->getName()) . ' ' . JText::_($this->text_prefix.'_TITLE_ITEM_EDIT')
+				: JText::_($this->text_prefix . '_' . strtoupper($this->getName()) . '_TITLE_ITEM_EDIT')
+				;
+		AKToolBarHelper::title( $title, 'article-add.png');
 		
 		parent::addToolbar();
 	}
