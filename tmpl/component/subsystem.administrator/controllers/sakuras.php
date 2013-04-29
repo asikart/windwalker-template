@@ -33,7 +33,6 @@ class FlowerControllerSakuras extends AKControllerAdmin
      * @see     JController
      * @since   11.1
      */
-	
     function __construct() {
 		
 		$this->redirect_tasks = array(

@@ -21,6 +21,14 @@
 				labelclass="control-label"
 			/>
 			
+			<field name="param_alias"
+				type="text"
+				label="JFIELD_ALIAS_LABEL"
+				description="JFIELD_ALIAS_DESC"
+				size="50"
+				labelclass="control-label"
+			/>
+			
 			<field name="parent_id"
 				type="sakura_modal"
 				label="COM_FLOWER_PARENT_ITEM"

@@ -49,7 +49,9 @@ class FlowerHelper extends AKProxy
 			if( substr($folder, -2) == 'es' || substr($folder, -1) == 's'){
 				
 				$menus[$folder] = array(
-					'title' 	=> AKDEV ? ucfirst($folder) . ' ' . JText::_('COM_FLOWER_TITLE_LIST') : JText::_('COM_FLOWER_' . strtoupper($folder) . '_TITLE' ),
+					'title' 	=> AKHelper::_('system.getConfig', 'system.development_mode', false, 'com_flower')
+									? ucfirst($folder) . ' ' . JText::_('COM_FLOWER_TITLE_LIST')
+									: JText::_('COM_FLOWER_' . strtoupper($folder) . '_TITLE' ),
 					'url' 		=> 'index.php?option=com_flower&view='.$folder,
 					'active' 	=> ( $vName == $folder )
 				);

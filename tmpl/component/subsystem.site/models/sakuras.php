@@ -331,12 +331,14 @@ class FlowerModelSakuras extends AKModelList
 		
 		// Search
 		// ========================================================================
+		$searc_where = array();
 		foreach($search as $k => $v ){
 			if(in_array($k, $this->filter_fields)){
 				$k = $db->qn($k);
-				$q->where("{$k} LIKE '{$v}'");
+				$searc_where[] = "{$k} LIKE '{$v}'" ;
 			}
 		}
+		$q->where( ' ( ' .implode(' OR ', $searc_where) . ' ) ');
 		
 		
 		
