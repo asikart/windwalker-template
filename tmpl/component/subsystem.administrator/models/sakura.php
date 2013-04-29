@@ -87,7 +87,7 @@ class FlowerModelSakura extends AKModelAdmin
      */
     public function getFieldsGroup()
 	{
-		$fields = parent::getFields();
+		$fields = parent::getFieldsGroup();
 		
 		return $fields ;
 	}

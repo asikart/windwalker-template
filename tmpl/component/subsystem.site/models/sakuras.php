@@ -338,7 +338,9 @@ class FlowerModelSakuras extends AKModelList
 				$searc_where[] = "{$k} LIKE '{$v}'" ;
 			}
 		}
-		$q->where( ' ( ' .implode(' OR ', $searc_where) . ' ) ');
+		if(count($searc_where)){
+			$q->where( ' ( ' .implode(' OR ', $searc_where) . ' ) ');
+		}
 		
 		
 		
