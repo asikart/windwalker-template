@@ -21,7 +21,7 @@
 		
 		<field
 			name="a.catid"
-			type="category"
+			type="sakura_list"
 			default=""
 			extension="com_flower"
 			onchange="this.form.submit();"
