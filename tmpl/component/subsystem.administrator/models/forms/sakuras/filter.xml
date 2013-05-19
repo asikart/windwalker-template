@@ -10,6 +10,7 @@
 			type="list"
 			default=""
 			onchange="this.form.submit();"
+			class="span12 small"
 		>
 			<option></option>
 			<option>JOPTION_SELECT_PUBLISHED</option>
@@ -25,7 +26,7 @@
 			default=""
 			extension="com_flower"
 			onchange="this.form.submit();"
-			class="" 
+			class="span12 small"
 		>
 			<option></option>
 			<option>JOPTION_SELECT_CATEGORY</option>
