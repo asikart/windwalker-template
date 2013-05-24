@@ -55,11 +55,20 @@ if( !defined('AKPATH_ROOT') ) {
 	include_once AKPATH_ROOT.'/init.php' ;
 }
 
+
+
+// Define
+// ========================================================================
+define('FLOWER_SITE' , JPATH_ROOT . "/components/" );
+define('FLOWER_ADMIN', JPATH_ADMINISTRATOR . "/components/");
+
+
+// Get Helper
 include_once JPath::clean( JPATH_ADMINISTRATOR . "/components/com_flower/helpers/flower.php" ) ;
 include_once JPath::clean( JPATH_ADMINISTRATOR . "/components/com_flower/includes/loader.php" ) ;
 
 
-// Set Component helper prefix, and AKProxy can use component helper first.
+// Set Component helper prefix, then AKProxy can use component helper first.
 // If component helper and methods not exists, AKProxy will call AKHelper instead.
 AKHelper::setPrefix('FlowerHelper') ;
 AKHelper::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_flower/helpers');

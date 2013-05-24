@@ -17,14 +17,6 @@ $lang 	= JFactory::getLanguage();
 
 
 
-// Define
-// ========================================================================
-define('FLOWER_SITE' , JPATH_COMPONENT_SITE );
-define('FLOWER_ADMIN', JPATH_COMPONENT_ADMINISTRATOR);
-define('FLOWER_SELF' , JPATH_COMPONENT);
-
-
-
 // Include Helpers
 // ========================================================================
 
