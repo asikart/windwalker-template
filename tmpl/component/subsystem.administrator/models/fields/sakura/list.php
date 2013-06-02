@@ -24,18 +24,41 @@ class JFormFieldSakura_List extends JFormFieldItemlist
 	 * The form field type.
 	 *
 	 * @var		string
-	 * @since	1.6
 	 */
 	public $type = 'Sakura_List';
 	
-	public $value ;
-	
-	public $name ;
-	
-	
+	/**
+     * List name.
+     *
+     * @var string 
+     */
 	protected $view_list = 'sakuras' ;
 	
+    /**
+     * Item name.
+     *
+     * @var string 
+     */
 	protected $view_item = 'sakura' ;
 	
+    /**
+     * Extension name, eg: com_content.
+     *
+     * @var string 
+     */
 	protected $extension = 'com_flower' ;
+    
+    /**
+     * Set the published column name in table.
+     *
+     * @var string
+     */
+    protected $published_field = 'published' ;
+    
+    /**
+     * Set the ordering column name in table.
+     *
+     * @var string
+     */
+    protected $ordering_field = null ;
 }
