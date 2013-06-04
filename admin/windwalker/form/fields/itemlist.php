@@ -100,17 +100,66 @@ class JFormFieldItemlist extends JFormFieldList
         $this->setElement();
         $options    = array();
         $name       = (string) $this->element['name'];
-        $show_root  = (string) $this->element['show_root'];
+        $key_field  = $this->element['key_field']   ? (string) $this->element['key_field']      : 'id';
+        $value_field= $this->element['value_field'] ? (string) $this->element['value_field']    : 'title';
+        $show_root  = (string) $this->element['show_root'] ? $this->element['show_root'] : false;
+        
+        $items = $this->getItems();
+        
+        
+        
+        // Set Options
+        // ========================================================================
+        foreach( $items as $item ):
+            $item   = new JObject($item);
+            $level  = !empty($item->level) && $nested ? $item->level : 0 ;
+            $options[] = JHtml::_('select.option', $item->$key_field, str_repeat('- ', $level).$item->$value_field );
+        endforeach;
+        
+        
+        
+        // Verify permissions.  If the action attribute is set, then we scan the options.
+        // ========================================================================
+        if ((string) $this->element['action'] || (string) $this->element['access'])
+        {
+            $options = $this->permissionCheck($options) ;
+        }
+        
+        
+        
+        // show root
+        // ========================================================================
+        if ($show_root)
+        {
+            array_unshift($options, JHtml::_('select.option', 1, JText::_('JGLOBAL_ROOT')));
+        }
+        
+        
+        
+        // Merge any additional options in the XML definition.
+        // ========================================================================
+        $options = array_merge(parent::getOptions(), $options);
+        
+        
+        
+        return $options;
+    }
+    
+    /**
+     * Use Query to get Items.
+     */
+    public function getItems()
+    {
         $published  = (string) $this->element['published'] ;
         $nested     = (string) $this->element['nested'] ;
         $key_field  = $this->element['key_field']   ? (string) $this->element['key_field']      : 'id';
         $value_field= $this->element['value_field'] ? (string) $this->element['value_field']    : 'title';
         $ordering   = $this->element['ordering']    ? (string) $this->element['ordering']       : null;
+        $table_name = $this->element['table']       ? (string) $this->element['table']          : '#__' . $this->component.'_'. $this->view_list ;
         $select     = $this->element['select'] ;
+        
         $db         = JFactory::getDbo();
         $q          = $db->getQuery(true) ;
-        
-        
         
         // Avoid self
         // ========================================================================
@@ -148,7 +197,7 @@ class JFormFieldItemlist extends JFormFieldList
         $select = $select ? '*, ' . $select : '*' ;
         
         $q->select($select)
-            ->from('#__' . $this->component.'_'. $this->view_list )
+            ->from( $table_name )
             ;
         
         $db->setQuery($q);
@@ -156,84 +205,57 @@ class JFormFieldItemlist extends JFormFieldList
         
         $items = $items ? $items : array() ;
         
-        
-        
-        // Set Options
-        // ========================================================================
-        foreach( $items as $item ):
-            $item   = new JObject($item);
-            $level  = !empty($item->level) && $nested ? $item->level : 0 ;
-            $options[] = JHtml::_('select.option', $item->$key_field, str_repeat('- ', $level).$item->$value_field );
-        endforeach;
-        
-        
-        
-        // Verify permissions.  If the action attribute is set, then we scan the options.
-        // ========================================================================
-        if ((string) $this->element['action'] || (string) $this->element['access'])
-        {
-            
-            // Get the current user object.
-            $user = JFactory::getUser();
+        return $items ;
+    }
+    
+    /**
+     * Check ACL permissions. If not permitted, remove this option.
+     */
+    public function permissionCheck($options)
+    {
+        // Get the current user object.
+        $user = JFactory::getUser();
 
-            // For new items we want a list of categories you are allowed to create in.
-            if (!$this->value)
-            {
-                foreach ($options as $i => $option) {
-                    // To take save or create in a category you need to have create rights for that category
-                    // unless the item is already in that category.
-                    // Unset the option if the user isn't authorised for it. In this field assets are always categories.
-                    if ($user->authorise('core.create', $this->extension  . '.' . $this->view_item . '.' . $option->value) != true )
-                    {
-                        unset($options[$i]);
-                    }
-                }
-            }
-            // If you have an existing category id things are more complex.
-            else
-            {
-                $value = $this->value;
-                foreach ($options as $i => $option)
-                {
-                    // If you are only allowed to edit in this category but not edit.state, you should not get any
-                    // option to change the category.
-                    if ($user->authorise('core.edit.own', $this->extension  . '.' . $this->view_item . '.' . $value) != true)
-                    {
-                        if ($option->value != $value)
-                        {
-                            unset($options[$i]);
-                        }
-                    }
-                    // However, if you can edit.state you can also move this to another category for which you have
-                    // create permission and you should also still be able to save in the current category.
-                    elseif
-                        (($user->authorise('core.create', $this->extension  . '.' . $this->view_item . '.' . $option->value) != true)
-                        && $option->value != $value)
-                    {
-                        unset($options[$i]);
-                    }
-                }
-            }
-        }
-        
-        
-        
-        // show root
-        // ========================================================================
-        if ((string) isset($this->element['show_root']))
+        // For new items we want a list of categories you are allowed to create in.
+        if (!$this->value)
         {
-            array_unshift($options, JHtml::_('select.option', 1, JText::_('JGLOBAL_ROOT')));
+            foreach ($options as $i => $option) {
+                // To take save or create in a category you need to have create rights for that category
+                // unless the item is already in that category.
+                // Unset the option if the user isn't authorised for it. In this field assets are always categories.
+                if ($user->authorise('core.create', $this->extension  . '.' . $this->view_item . '.' . $option->value) != true )
+                {
+                    unset($options[$i]);
+                }
+            }
+        }
+        // If you have an existing category id things are more complex.
+        else
+        {
+            $value = $this->value;
+            foreach ($options as $i => $option)
+            {
+                // If you are only allowed to edit in this category but not edit.state, you should not get any
+                // option to change the category.
+                if ($user->authorise('core.edit.own', $this->extension  . '.' . $this->view_item . '.' . $value) != true)
+                {
+                    if ($option->value != $value)
+                    {
+                        unset($options[$i]);
+                    }
+                }
+                // However, if you can edit.state you can also move this to another category for which you have
+                // create permission and you should also still be able to save in the current category.
+                elseif
+                    (($user->authorise('core.create', $this->extension  . '.' . $this->view_item . '.' . $option->value) != true)
+                    && $option->value != $value)
+                {
+                    unset($options[$i]);
+                }
+            }
         }
         
-        
-        
-        // Merge any additional options in the XML definition.
-        // ========================================================================
-        $options = array_merge(parent::getOptions(), $options);
-        
-        
-        
-        return $options;
+        return $options ;
     }
     
     /**
