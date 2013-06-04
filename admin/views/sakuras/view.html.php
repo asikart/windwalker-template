@@ -86,7 +86,7 @@ class FlowerViewSakuras extends AKViewList
 	 */
 	protected function getSortFields()
 	{
-		$ordering_key = $this->state->get('items.nested') ? 'a.lft' : 'a.ordering' ;
+		$ordering_key = $this->state->get('list.orderCol', 'a.ordering') ;
 		
 		$this->sort_fields = array(
 			$ordering_key 		=> JText::_('JGRID_HEADING_ORDERING'),

@@ -210,7 +210,7 @@ class FlowerModelSakuras extends AKModelList
 		// Ordering
 		// ========================================================================
 		if( $orderCol == $order ){
-			$prefix = count($prefix) ? implode(', ', $db->qn($prefix)) . ', ' : '' ;
+			$prefix = count($prefix) ? implode(', ', $prefix) . ', ' : '' ;
 		}else{
 			$prefix = '' ;
 		}
