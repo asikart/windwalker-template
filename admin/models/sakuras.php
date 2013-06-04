@@ -101,7 +101,7 @@ class FlowerModelSakuras extends AKModelList
 	protected function populateState($ordering = null, $direction = null)
 	{
 		// Set First order field
-		$this->setState('list.orderingPrefix', array('a.catid')) ;
+		$this->setState('list.orderingPrefix', array(/*'a.catid'*/)) ;
 		
 		parent::populateState($ordering, 'asc');
 	}
