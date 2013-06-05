@@ -8,7 +8,7 @@
 
         <field name="sakura_list"
              type="sakura_list"
-             default="1"
+             default="5"
 			 extension="com_flower"
 			 view_list="sakuras"
 			 view_item="sakura"
@@ -21,14 +21,25 @@
 		
 		<field name="sakura_modal"
              type="sakura_modal"
-             default="1"
+             default="7"
 			 extension="com_flower"
 			 view_list="sakuras"
 			 view_item="sakura"
              label="COM_FLOWER_SELECT_SAKURA"
              description="COM_FLOWER_SELECT_SAKURA_DESC"
-			 
 			 quickadd="true"
+		/>
+		
+		<field name="finder"
+			type="finder"
+			default=""
+			extension="com_flower"
+			root="images"
+			start_path="banners"
+			label="Finder"
+			description="COM_FLOWER_SELECT_SAKURA_DESC"
+			preview="true"
+
 		/>
 		
 		<field name="limit"
