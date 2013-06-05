@@ -45,7 +45,7 @@
 			</field>
 			
 			<field name="images"
-				type="media"
+				type="finder"
 				label="COM_FLOWER_IMAGES"
 				description="COM_FLOWER_IMAGES_DESC"
 				labelclass="control-label"
