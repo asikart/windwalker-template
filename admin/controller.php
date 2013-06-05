@@ -11,7 +11,9 @@
 // no direct access
 defined('_JEXEC') or die;
 
-class FlowerController extends JControllerLegacy
+include_once AKPATH_COMPONENT.'/controller.php' ;
+
+class FlowerController extends AKController
 {
 	/**
 	 * Method to display a view.

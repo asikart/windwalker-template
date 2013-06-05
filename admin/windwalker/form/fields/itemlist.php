@@ -86,6 +86,19 @@ class JFormFieldItemlist extends JFormFieldList
     protected $ordering_field = null ;
     
     /**
+     * Method to get the field input markup for a generic list.
+     * Use the multiple attribute to enable multiselect.
+     *
+     * @return  string  The field input markup.
+     *
+     * @since   11.1
+     */
+    protected function getInput()
+    {
+        return parent::getInput() . $this->quickadd();
+    }
+    
+    /**
      * Method to get the list of files for the field options.
      * Specify the target directory with a directory attribute
      * Attributes allow an exclude mask and stripping of extensions from file name.
@@ -103,6 +116,7 @@ class JFormFieldItemlist extends JFormFieldList
         $key_field  = $this->element['key_field']   ? (string) $this->element['key_field']      : 'id';
         $value_field= $this->element['value_field'] ? (string) $this->element['value_field']    : 'title';
         $show_root  = (string) $this->element['show_root'] ? $this->element['show_root'] : false;
+        $nested     = (string) $this->element['nested'] ;
         
         $items = $this->getItems();
         
@@ -112,7 +126,8 @@ class JFormFieldItemlist extends JFormFieldList
         // ========================================================================
         foreach( $items as $item ):
             $item   = new JObject($item);
-            $level  = !empty($item->level) && $nested ? $item->level : 0 ;
+            $level  = !empty($item->level) ? $item->level - 1 : 0 ;
+            if( $item->level < 0 ) $item->level = 0 ;
             $options[] = JHtml::_('select.option', $item->$key_field, str_repeat('- ', $level).$item->$value_field );
         endforeach;
         
@@ -168,8 +183,8 @@ class JFormFieldItemlist extends JFormFieldList
         $view   = JRequest::getVar('view') ;
         $layout = JRequest::getVar('layout') ;
         
-        if($nested){
-            $table = JTable::getInstance($this->view_item, ucfirst($this->component).'Table');
+        if($nested && $id){
+            $table = JTable::getInstance( ucfirst($this->view_item), ucfirst($this->component).'Table');
             $table->load($id) ;
             $q->where("id != {$id}") ;
             $q->where("lft < {$table->lft} OR rgt > {$table->rgt}") ;
@@ -181,6 +196,8 @@ class JFormFieldItemlist extends JFormFieldList
         if($published) {
             $q->where('{$this->published_field} >= 1');
         }
+        
+        $q->where( "( id != 1 AND title != 'ROOT' )" );
         
         // Ordering
         $order      = $nested ? 'lft, ordering' : 'ordering' ;
@@ -259,6 +276,71 @@ class JFormFieldItemlist extends JFormFieldList
     }
     
     /**
+     * Add an quick add button & modal
+     */
+    public function quickadd()
+    {
+        // Prepare Element
+        $quickadd    = $this->getElement('quickadd'     , false);
+        $table_name  = $this->getElement('table'        , '#__' . $this->component.'_'. $this->view_list);
+        $key_field   = $this->getElement('key_field'    , 'id');
+        $value_field = $this->getElement('value_field'  , 'title');
+        $formpath    = $this->getElement('quickadd_formpath'  , "administrator/components/{$this->extension}/models/forms/{$this->view_item}.xml");
+        $quickadd_extension = $this->getElement('quickadd_extension'  , $this->extension);
+        $title       = $this->getElement('quickadd_label', 'LIB_WINDWALKER_QUICKADD_TITLE');
+        
+        $qid = $this->id.'_quickadd' ;
+        
+        if(!$quickadd) return '' ;
+        
+        
+        // Prepare Script & Styles
+        $doc = JFactory::getDocument();
+        AKHelper::_('include.sortedStyle', 'includes/css', $quickadd_extension);
+        AKHelper::_('include.addJS', 'quickadd.js', 'ww');
+        
+        // Set AKQuickAddOption
+        $config['quickadd_extension']    = $quickadd_extension ;
+        $config['extension']    = $this->extension ;
+        $config['component']    = $this->component ;
+        $config['table']        = $table_name ;
+        $config['model_name']   = $this->view_item ;
+        $config['key_field']    = $key_field ;
+        $config['value_field']  = $value_field ;
+        
+        $config = AKHelper::_('html.getJSObject', $config);
+        
+        $script = <<<QA
+        window.addEvent('domready', function(){
+            var AKQuickAddOption = {$config} ;
+            AKQuickAdd.init('{$qid}', AKQuickAddOption);
+        });
+QA;
+        
+        $doc->addScriptDeclaration( $script );
+        
+        
+        // Load Language & Form
+        AKHelper::_('lang.loadLanguage', $this->extension, null);
+        $content = AKHelper::_('ui.getQuickaddForm', $qid , $formpath );
+        
+        
+        // Prepare HTML
+        $html       = '';
+        $button_title   = $title;
+        $modal_title    = $button_title ;
+        $button_class   = 'btn btn-small btn-success' ;
+        
+        $footer = "<button class=\"btn\" type=\"button\" onclick=\"$$('#{$qid} input', '#{$qid} select').set('value', '');\" data-dismiss=\"modal\">".JText::_('JCANCEL')."</button>";
+        $footer .= "<button class=\"btn btn-primary\" type=\"submit\" onclick=\"AKQuickAdd.submit('{$qid}', event);\">".JText::_('JSUBMIT')."</button>";
+        
+        $html .= AKHelper::_('ui.modalLink', JText::_($button_title), $qid, array('class' => $button_class, 'icon' => 'icon-new icon-white')) ;
+        $html .= AKHelper::_('ui.renderModal', $qid, $content, array('title' => JText::_($modal_title) , 'footer' => $footer )) ;
+        
+        return $html ;
+    }
+    
+    /**
      * Set some element attributes to class variable.  
      */
     public function setElement()
@@ -280,5 +362,17 @@ class JFormFieldItemlist extends JFormFieldList
         }
         
         $this->component = str_replace('com_', '', $this->extension );
+    }
+    
+    /**
+     * Get Element Value.
+     */
+    public function getElement($key, $default = null)
+    {
+        if( $this->element[$key] ) {
+            return (string) $this->element[$key] ;
+        }else{
+            return $default ;
+        }
     }
 }

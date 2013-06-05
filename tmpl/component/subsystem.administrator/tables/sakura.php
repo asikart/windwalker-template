@@ -174,9 +174,9 @@ class FlowerTableSakura extends JTable
      * @since   11.1
      * @throws  UnexpectedValueException
      */
-    public function delete($pk = null)
+    public function delete($pk = null, $children = true)
 	{
-		return parent::delete($pk);
+		return parent::delete($pk, $children);
 	}
 	
 	/*

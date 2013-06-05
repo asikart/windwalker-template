@@ -139,6 +139,50 @@ MODAL;
         
         return $html ;
     }
+    
+    /**
+     * getQuickaddForm
+     */
+    static public function getQuickaddForm($id, $path, $extension = null)
+    {
+        $content = '';
+        
+        //JForm::addFormPath(AKHelper::_('path.get', null, $extension).'/models/forms');
+        //JForm::addFieldPath(AKHelper::_('path.get', null, $extension).'/models/fields');
+        
+        try
+        {
+            $form = new JForm($id.'.quickaddform', array('control' => $id));
+            $form->loadFile(JPATH_ROOT.'/'.$path) ;
+        }
+        catch (Exception $e)
+        {
+            Jerror::raiseWarning(404, $e->getMessage());
+            return false;
+        }
+        
+        // Set Category Extension
+        if( $extension ) {
+            $form->setValue('extension', null, $extension) ;
+        }
+        
+        
+        $fieldset = $form->getFieldset('quickadd') ;
+        
+        foreach( $fieldset as $field ):
+            
+            $content .= "<div class=\"control-group\" id=\"jform_basic_alias-wrap\">
+                            <div class=\"control-label\">
+                                {$field->label}
+                            </div>
+                            <div class=\"controls\">
+                                {$field->input}
+                            </div>
+                        </div>" ;
+        endforeach;
+        
+        return $content ;
+    }
 }
 
 

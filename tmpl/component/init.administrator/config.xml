@@ -14,6 +14,7 @@
 			 view_item="sakura"
              label="COM_FLOWER_SELECT_SAKURA"
              description="COM_FLOWER_SELECT_SAKURA_DESC"
+			 quickadd="true"
 		>
             <option>JOPTION_DO_NOT_USE</option>
          </field>
@@ -26,6 +27,8 @@
 			 view_item="sakura"
              label="COM_FLOWER_SELECT_SAKURA"
              description="COM_FLOWER_SELECT_SAKURA_DESC"
+			 
+			 quickadd="true"
 		/>
 		
 		<field name="limit"

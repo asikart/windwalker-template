@@ -32,11 +32,14 @@
 			/>
 			
 			<field name="catid"
-				type="category"
+				type="categoryadd"
 				label="JCATEGORY"
 				description="JFIELD_CATEGORY_DESC"
 				extension="com_flower"
 				labelclass="control-label"
+				
+				quickadd="true"
+				quickadd_extension="com_flower"
 			>
 				<option value="0">COM_FLOWER_TITLE_UNCATEGORISED</option>
 			</field>
@@ -177,5 +180,41 @@
 			/>
 		</fieldset>
 	</fields>
+	
+	
+	<!-- For Quick Ajax AddNew -->
+	<fieldset name="quickadd">
+		<field name="title"
+			type="text"
+			label="JGLOBAL_TITLE"
+			description="JFIELD_TITLE_DESC"
+			required="true"
+			size="50"
+			labelclass=""
+			class="input-xlarge"
+		/>
+		
+		<field name="catid"
+			type="category"
+			label="JCATEGORY"
+			description="JFIELD_CATEGORY_DESC"
+			extension="com_flower"
+			labelclass="control-label"
+		>
+			<option value="0">COM_FLOWER_TITLE_UNCATEGORISED</option>
+		</field>
+		
+		<!--<field name="parent_id"
+			type="sakura_list"
+			label="COM_FLOWER_PARENT_ITEM"
+			description="COM_FLOWER_PARENT_ITEM_DESC"
+			labelclass="control-label"
+			class="input-xlarge inputbox"
+			access="true"
+		>
+			<option>JSELECT</option>
+			<option value="1">JLIB_HTML_ADD_TO_ROOT</option>
+		</field>-->
+	</fieldset>
 	
 </form>
