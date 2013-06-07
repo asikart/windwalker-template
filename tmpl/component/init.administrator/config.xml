@@ -28,18 +28,19 @@
              label="COM_FLOWER_SELECT_SAKURA"
              description="COM_FLOWER_SELECT_SAKURA_DESC"
 			 quickadd="true"
+			 disabled="true"
 		/>
 		
 		<field name="finder"
 			type="finder"
 			default=""
 			extension="com_flower"
-			root="images"
-			start_path="banners"
+			root="images/banners"
+			start_path=""
 			label="Finder"
 			description="COM_FLOWER_SELECT_SAKURA_DESC"
 			preview="true"
-
+			onlyimage="true"
 		/>
 		
 		<field name="limit"

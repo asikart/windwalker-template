@@ -21,4 +21,7 @@ include_once dirname(__FILE__).'/controllerapi.class.php' ;
 include_once dirname(__FILE__).'/viewapi.class.php' ;
 include_once dirname(__FILE__).'/errorapi.class.php' ;
 
+include_once AKPATH_COMPONENT.'/api/response/item.php' ;
+include_once AKPATH_COMPONENT.'/api/response/list.php' ;
+
 ApiError::attachHandler();
