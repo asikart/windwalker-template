@@ -34,7 +34,7 @@
 			type="finder"
 			default=""
 			handler="com_flower"
-			root="images/banners"
+			root="images"
 			start_path=""
 			label="Finder"
 			description="COM_FLOWER_SELECT_SAKURA_DESC"
