@@ -28,6 +28,10 @@ class FlowerModelSakura extends AKModelAdmin
 	public 		$item_name = 'sakura' ;
 	public 		$list_name = 'sakuras' ;
 	
+	public      $request_item = '';
+    public      $request_list = '';
+	
+	public 		$default_method = 'getItem';
 	
 	
 	/**

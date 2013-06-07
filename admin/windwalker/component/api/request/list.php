@@ -26,7 +26,25 @@ class AKRequestModelList extends AKModelList
 	
     public      $result ;
 	
-     
+	/**
+     * Constructor.
+     *
+     * @param    array    An optional associative array of configuration settings.
+     * @see      JController
+     */
+    public function __construct($config = array())
+    {
+		$this->service = AKHelper::_('api.getSDK', $this->option);
+		
+		$config['filter_fields'] = array(
+			'filter_order_Dir', 'filter_order', '*'
+		);
+		
+		$config['filter_fields'] = AKHelper::_('query.mergeAPIFilterFields', $config['filter_fields'] , $this->request_item );
+		AK::show($config);
+        parent::__construct($config);
+    }
+	 
     /**
      * function getAPIResult
      * @param 
@@ -78,7 +96,7 @@ class AKRequestModelList extends AKModelList
         
         
         // Load API
-        $service = SCHelper::getCustomerSDK();
+        $service = $this->service ;
         
         $result = $service->execute("/{$this->request_list}/getitems", $uriQuery);
         
@@ -119,7 +137,7 @@ class AKRequestModelList extends AKModelList
         // ----------------------
         
         foreach( $result->items as $item ):
-            $items[] = $this->_map( $this->item_name, $item);
+            $items[] = $this->_map( $this->request_item, $item);
         endforeach;
         
         
@@ -202,7 +220,7 @@ class AKRequestModelList extends AKModelList
         }
         
         // Load API
-        $service = SCHelper::getCustomerSDK();
+        $service = $this->service ;
         
         $result = $service->execute("/{$this->request_list}/isChanged");
         

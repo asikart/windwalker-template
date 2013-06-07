@@ -56,10 +56,12 @@ FlowerHelper::_('plugin.attachPlugins');
 define('AKDEBUG', FlowerHelper::_('system.getConfig', 'system.debug', false, 'com_flower')) ;
 define('AKDEV', FlowerHelper::_('system.getConfig', 'system.development_mode', true, 'com_flower')) ;
 
-// API
-AKHelper::_('api.initClient', 'com_flower' , array(
-	'username' 	=> 'iHealthScheduleSystem' ,
-	'password' 	=> '1234' ,
-	'host' 		=> 'http://localhost/customer/index.php' ,
+
+/* API Client init 
+AKHelper::_('api.initClient', null , array(
+	'username' 	=> 'username' ,
+	'password' 	=> 'password' ,
+	'host' 		=> '' ,
 	'component' => 'com_flower'
 ) );
+*/
