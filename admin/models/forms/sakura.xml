@@ -37,9 +37,7 @@
 				description="JFIELD_CATEGORY_DESC"
 				extension="com_flower"
 				labelclass="control-label"
-				
 				quickadd="true"
-				quickadd_extension="com_flower"
 			>
 				<option value="0">COM_FLOWER_TITLE_UNCATEGORISED</option>
 			</field>
@@ -50,7 +48,6 @@
 				description="COM_FLOWER_IMAGES_DESC"
 				labelclass="control-label"
 				preview="true"
-				
 			/>
 			
 			<field name="url"
