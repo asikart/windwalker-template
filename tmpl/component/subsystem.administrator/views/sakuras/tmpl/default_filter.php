@@ -68,12 +68,19 @@ if( JVERSION >= 3 ) {
 		<div class="btn-group pull-left hidden-phone">
 			<button class="btn tip hasTooltip" type="submit" title="<?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?>"><i class="icon-search"></i></button>
 			<button class="btn tip hasTooltip" type="button" onclick="$$('#search-bar input').set('value', '');this.form.submit();" title="<?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?>"><i class="icon-remove"></i></button>
+            
+            <?php if( $layout == 'modal' ): ?>
+            <button class="btn tip" onclick="if (window.parent) window.parent.<?php echo JRequest::getVar('function') ;;?>('','<?php echo JText::_('COM_FLOWER_SELECT_ITEM'); ?>');"><?php echo JText::_('COM_FLOWER_MODAL_NO_SELECT'); ?></button>
+            <?php endif; ?> 
 		</div>
 		<?php else: ?>
 		
 			<button type="btn submit"><?php echo JText::_('JSEARCH_FILTER_SUBMIT'); ?></button>
 			<button type="btn button" onclick="$$('#search-bar input').set('value', '');this.form.submit();"><?php echo JText::_('JSEARCH_FILTER_CLEAR'); ?></button>
-		
+            
+            <?php if( $layout == 'modal' ): ?>
+            <button class="btn tip" onclick="if (window.parent) window.parent.<?php echo JRequest::getVar('function') ;;?>('','<?php echo JText::_('COM_FLOWER_SELECT_ITEM'); ?>');"><?php echo JText::_('COM_FLOWER_MODAL_NO_SELECT'); ?></button>
+            <?php endif; ?> 
 		<?php endif; ?>	
 	</div>
 	
