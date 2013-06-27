@@ -15,6 +15,9 @@ include_once AKPATH_COMPONENT.'/modellist.php' ;
 
 /**
  * Methods supporting a list of Flower records.
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  com_flower 
  */
 class FlowerModelSakuras extends AKModelList
 {

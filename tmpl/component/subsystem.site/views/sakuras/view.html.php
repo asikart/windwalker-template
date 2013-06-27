@@ -15,6 +15,9 @@ include_once AKPATH_COMPONENT.'/viewlist.php' ;
 
 /**
  * View class for a list of Flower.
+ *
+ * @package     Joomla.Site
+ * @subpackage  com_flower 
  */
 class FlowerViewSakuras extends AKViewList
 {

@@ -15,7 +15,10 @@ defined('_JEXEC') or die;
 include_once AKPATH_COMPONENT.'/controllerform.php' ;
 
 /**
- * Sakura controller class.
+ * Sakura controllerform class to edit item.
+ *
+ * @package     Joomla.Site
+ * @subpackage  com_flower 
  */
 class FlowerControllerSakura extends AKControllerForm
 {

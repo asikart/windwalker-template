@@ -14,7 +14,10 @@ defined('_JEXEC') or die;
 include_once AKPATH_COMPONENT.'/viewitem.php' ;
 
 /**
- * View class for a list of Flower.
+ * View class for a item edit of Flower.
+ *
+ * @package     Joomla.Site
+ * @subpackage  com_flower 
  */
 class FlowerViewSakura extends AKViewItem
 {

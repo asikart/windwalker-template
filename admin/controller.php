@@ -13,6 +13,12 @@ defined('_JEXEC') or die;
 
 include_once AKPATH_COMPONENT.'/controller.php' ;
 
+/**
+ * Main Controller of Flower.
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  com_flower 
+ */
 class FlowerController extends AKController
 {
 	/**

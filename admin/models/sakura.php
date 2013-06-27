@@ -14,7 +14,10 @@ defined('_JEXEC') or die;
 include_once AKPATH_COMPONENT.'/modeladmin.php' ;
 
 /**
- * Flower model.
+ * Flower ModelAdmin to edit item.
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  com_flower 
  */
 class FlowerModelSakura extends AKModelAdmin
 {

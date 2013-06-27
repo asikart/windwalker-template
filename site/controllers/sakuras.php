@@ -16,6 +16,9 @@ include_once AKPATH_COMPONENT.'/controlleradmin.php' ;
 
 /**
  * Sakuras list controller class.
+ *
+ * @package     Joomla.Site
+ * @subpackage  com_flower 
  */
 class FlowerControllerSakuras extends AKControllerAdmin
 {

@@ -16,6 +16,9 @@ include_once dirname(__FILE__).'/../includes/core.php' ;
 
 /**
  * Flower helper.
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  com_flower 
  */
 class FlowerHelper extends AKProxy
 {

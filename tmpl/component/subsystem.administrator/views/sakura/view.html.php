@@ -15,6 +15,9 @@ include_once AKPATH_COMPONENT.'/viewitem.php' ;
 
 /**
  * View to edit
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  com_flower 
  */
 class FlowerViewSakura extends AKViewItem
 {

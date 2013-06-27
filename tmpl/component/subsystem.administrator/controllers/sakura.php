@@ -16,6 +16,9 @@ include_once AKPATH_COMPONENT.'/controllerform.php' ;
 
 /**
  * Sakura controller class.
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  com_flower 
  */
 class FlowerControllerSakura extends AKControllerForm
 {

@@ -11,6 +11,12 @@
 // no direct access
 defined('_JEXEC') or die;
 
+/**
+ * Main Controller of Flower.
+ *
+ * @package     Joomla.Site
+ * @subpackage  com_flower 
+ */
 class FlowerController extends JControllerLegacy
 {
 	/**

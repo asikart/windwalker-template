@@ -14,7 +14,10 @@ defined('_JEXEC') or die;
 jimport('joomla.database.tablenested');
 
 /**
- * sakura Table class
+ * Sakura Table class
+ *
+ * @package     Joomla.Administrator
+ * @subpackage  com_flower 
  */
 class FlowerTableSakura extends JTable
 {
