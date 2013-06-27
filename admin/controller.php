@@ -35,7 +35,8 @@ class FlowerController extends AKController
 		parent::display();
         
         // Debug
-        if(AKDEBUG):
+        $doc = JFactory::getDocument();
+        if((AKDEBUG || JDEBUG) && $doc->getType() == 'html'):
             echo '<hr style="clear:both;" />';
             echo AKHelper::_('system.renderProfiler', 'WindWalker') ;   
         endif;
