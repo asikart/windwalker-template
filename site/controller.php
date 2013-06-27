@@ -34,5 +34,4 @@ class FlowerController extends JControllerLegacy
 
 		return $this;
 	}
-	
 }

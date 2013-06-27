@@ -24,14 +24,47 @@ class FlowerModelSakura extends AKModelAdmin
 	 */
 	protected 	$text_prefix = 'COM_FLOWER';
 	
-	public 		$component = 'flower' ;
-	public 		$item_name = 'sakura' ;
-	public 		$list_name = 'sakuras' ;
+    /**
+     * The Component name.
+     *
+     * @var    string 
+     */
+	protected    $component = 'flower' ;
+    
+    /**
+     * The URL view item variable.
+     *
+     * @var    string 
+     */
+	protected    $item_name = 'sakura' ;
+    
+    /**
+     * The URL view list variable.
+     *
+     * @var    string 
+     */
+	protected    $list_name = 'sakuras' ;
 	
-	public      $request_item = '';
-    public      $request_list = '';
+    /**
+     * The URL view list to request remote data (only use in API system).
+     *
+     * @var    string 
+     */
+	public    $request_item = '';
+    
+    /**
+     * The URL view item to request remote data (only use in API system).
+     *
+     * @var    string 
+     */
+    public    $request_list = '';
 	
-	public 		$default_method = 'getItem';
+    /**
+     * The default method to call. (only use in API system).
+     *
+     * @var    string 
+     */
+	public    $default_method = 'getItem';
 	
 	/**
 	 * Returns a reference to the a Table object, always creating it.
@@ -47,8 +80,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return parent::getTable( $type , $prefix , $config );
 	}
 	
-	
-
 	/**
 	 * Method to get the record form.
 	 *
@@ -64,21 +95,34 @@ class FlowerModelSakura extends AKModelAdmin
 		return $form ;
 	}
 	
-	
-	/*
-	 * function getFields
-	 * @param 
-	 */
-	
+	/**
+     * Get fields group. This Function is deprecated, use getFieldsGroup instead.
+     *
+     * @return      array   Fields groups.
+     * @deprecated  4.0
+     */
 	public function getFields()
 	{
+		// Deprecation warning.
+        JLog::add( __CLASS__.'::'.__FUNCTION__.'() is deprecated.', JLog::WARNING, 'deprecated');
+		
 		$fields = parent::getFields();
 		
 		return $fields ;
 	}
 	
+	/**
+     * Get fields group.
+     *
+     * @return    array   Fields groups.
+     */
+    public function getFieldsGroup()
+	{
+		$fields = parent::getFieldsGroup();
+		
+		return $fields ;
+	}
 	
-
 	/**
 	 * Method to get the data that should be injected in the form.
 	 *
@@ -94,9 +138,7 @@ class FlowerModelSakura extends AKModelAdmin
 		
 		return $data ;
 	}
-
-	
-	
+    
 	/**
 	 * Method to get a single record.
 	 *
@@ -117,7 +159,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return false;
 	}
 	
-	
 	/**
 	 * Method to auto-populate the model state.
 	 *
@@ -131,8 +172,6 @@ class FlowerModelSakura extends AKModelAdmin
 		
 		parent::populateState();
 	}
-	
-	
 	
 	/**
      * Method to allow derived classes to preprocess the form.
@@ -152,8 +191,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return parent::preprocessForm($form, $data, $group);
 	}
 	
-	
-	
 	/**
 	 * A protected method to get a set of ordering conditions.
 	 *
@@ -167,8 +204,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return parent::getReorderConditions($table) ;
 	}
 	
-	
-
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
@@ -176,28 +211,30 @@ class FlowerModelSakura extends AKModelAdmin
 	 */
 	protected function prepareTable(&$table)
 	{
-		return parent::prepareTable($table);
+		parent::prepareTable($table);
 	}
 	
-	
-	
-	/*
-	 * function setOrderPosition
-	 * @param $table
-	 */
-	
+	/**
+     * Method to set new item ordering as first or last.
+     * 
+     * @param   JTable  $table      Item table to save.
+     * @param   string  $position   "first" to set first or other are set to last.
+     *
+     * @return  type    
+     */
 	public function setOrderPosition($table, $position = null)
 	{
 		// "first" or "last"
 		parent::setOrderPosition($table, 'last') ;
 	}
 	
-	
-	/*
-	 * function postSaveHook
-	 * @param $data
-	 */
-	
+	/**
+     * Function that do something after save.
+     *
+     * @param   object  $data	The data object.
+     *
+     * @return  boolean	Save success or not. 
+     */
 	public function postSaveHook($data = null)
 	{
 		return true ;

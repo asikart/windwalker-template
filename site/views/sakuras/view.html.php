@@ -23,18 +23,76 @@ class FlowerViewSakuras extends AKViewList
 	 * @since	1.6
 	 */
 	protected 	$text_prefix = 'COM_FLOWER';
+	
+    /**
+     * Item list of table view.
+     *
+     * @var array   
+     */
 	protected 	$items;
+    
+    /**
+     * Pagination object of table view
+     *
+     * @var JPagination 
+     */
 	protected 	$pagination;
+    
+    /**
+     * Model state to get some configuration.
+     *
+     * @var JRegistry 
+     */
 	protected 	$state;
 	
-	public		$option 	= 'com_flower' ;
-	public		$list_name 	= 'sakuras' ;
-	public		$item_name 	= 'sakura' ;
-	public		$sort_fields ;
+	/**
+     * The Component option name.
+     *
+     * @var    string 
+     */
+	protected    $option 	= 'com_flower' ;
+    
+    /**
+     * The URL view list variable.
+     *
+     * @var    string 
+     */
+	protected    $list_name 	= 'sakuras' ;
+    
+    /**
+     * The URL view item variable.
+     *
+     * @var    string 
+     */
+	protected    $item_name 	= 'sakura' ;
+    
+	/**
+     * Sort fields of table view.
+     *
+     * @var array   
+     */
+	protected    $sort_fields ;
 	
-	public		$lead_items ;
-	public		$intro_items ;
-	public		$link_items ;
+    /**
+     * Leading items number.
+     *
+     * @var int 
+     */
+	protected    $lead_items ;
+    
+    /**
+     * Intro items number.
+     *
+     * @var int  
+     */
+	protected    $intro_items ;
+    
+    /**
+     * Link items number.
+     *
+     * @var int 
+     */
+	protected    $link_items ;
 
 	/**
 	 * Display the view

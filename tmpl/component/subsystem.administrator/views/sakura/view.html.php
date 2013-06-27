@@ -23,17 +23,42 @@ class FlowerViewSakura extends AKViewItem
 	 * @since	1.6
 	 */
 	protected 	$text_prefix = 'COM_FLOWER';
-	protected 	$items;
-	protected 	$pagination;
+    
+    /**
+     * Item to edit.
+     *
+     * @var array   
+     */
+	protected 	$item;
+    
+    /**
+     * Model state to get some configuration.
+     *
+     * @var JRegistry 
+     */
 	protected 	$state;
 	
-	public		$option 	= 'com_flower' ;
-	public		$list_name 	= 'sakuras' ;
-	public		$item_name 	= 'sakura' ;
-	public		$sort_fields ;
+    /**
+     * The Component option name.
+     *
+     * @var    string 
+     */
+	protected    $option 	= 'com_flower' ;
+    
+    /**
+     * The URL view list variable.
+     *
+     * @var    string 
+     */
+	protected    $list_name 	= 'sakuras' ;
+    
+    /**
+     * The URL view item variable.
+     *
+     * @var    string 
+     */
+	protected    $item_name 	= 'sakura' ;
 	
-	
-
 	/**
 	 * Display the view
 	 */
@@ -56,9 +81,7 @@ class FlowerViewSakura extends AKViewItem
 
 		parent::displayWithPanel($tpl) ;
 	}
-
-	
-	
+    
 	/**
 	 * Add the page title and toolbar.
 	 */
@@ -74,13 +97,9 @@ class FlowerViewSakura extends AKViewItem
 		parent::addToolbar();
 	}
 	
-	
-	
-	/*
-	 * function handleFields
-	 * @param 
-	 */
-	
+	/**
+     * Show or hide some fields setting.
+     */
 	public function handleFields()
 	{
 		$form = $this->form ;

@@ -24,15 +24,47 @@ class FlowerModelSakura extends AKModelAdmin
 	 */
 	protected 	$text_prefix = 'COM_FLOWER';
 	
-	public 		$component = 'flower' ;
-	public 		$item_name = 'sakura' ;
-	public 		$list_name = 'sakuras' ;
+    /**
+     * The Component name.
+     *
+     * @var    string 
+     */
+	protected    $component = 'flower' ;
+    
+    /**
+     * The URL view item variable.
+     *
+     * @var    string 
+     */
+	protected    $item_name = 'sakura' ;
+    
+    /**
+     * The URL view list variable.
+     *
+     * @var    string 
+     */
+	protected    $list_name = 'sakuras' ;
 	
-	public      $request_item = '';
-    public      $request_list = '';
+    /**
+     * The URL view list to request remote data (only use in API system).
+     *
+     * @var    string 
+     */
+	public    $request_item = '';
+    
+    /**
+     * The URL view item to request remote data (only use in API system).
+     *
+     * @var    string 
+     */
+    public    $request_list = '';
 	
-	public 		$default_method = 'getItem';
-	
+    /**
+     * The default method to call. (only use in API system).
+     *
+     * @var    string 
+     */
+	public    $default_method = 'getItem';
 	
 	/**
 	 * Returns a reference to the a Table object, always creating it.
@@ -48,8 +80,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return parent::getTable( $type , $prefix , $config );
 	}
 	
-	
-
 	/**
 	 * Method to get the record form.
 	 *
@@ -64,7 +94,6 @@ class FlowerModelSakura extends AKModelAdmin
 		
 		return $form ;
 	}
-	
 	
 	/**
      * Get fields group. This Function is deprecated, use getFieldsGroup instead.
@@ -82,8 +111,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return $fields ;
 	}
 	
-	
-	
 	/**
      * Get fields group.
      *
@@ -96,8 +123,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return $fields ;
 	}
 	
-	
-
 	/**
 	 * Method to get the data that should be injected in the form.
 	 *
@@ -113,9 +138,7 @@ class FlowerModelSakura extends AKModelAdmin
 		
 		return $data ;
 	}
-
-	
-	
+    
 	/**
 	 * Method to get a single record.
 	 *
@@ -136,7 +159,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return false;
 	}
 	
-	
 	/**
 	 * Method to auto-populate the model state.
 	 *
@@ -150,8 +172,6 @@ class FlowerModelSakura extends AKModelAdmin
 		
 		parent::populateState();
 	}
-	
-	
 	
 	/**
      * Method to allow derived classes to preprocess the form.
@@ -171,8 +191,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return parent::preprocessForm($form, $data, $group);
 	}
 	
-	
-	
 	/**
 	 * A protected method to get a set of ordering conditions.
 	 *
@@ -186,8 +204,6 @@ class FlowerModelSakura extends AKModelAdmin
 		return parent::getReorderConditions($table) ;
 	}
 	
-	
-
 	/**
 	 * Prepare and sanitise the table prior to saving.
 	 *
@@ -197,8 +213,6 @@ class FlowerModelSakura extends AKModelAdmin
 	{
 		parent::prepareTable($table);
 	}
-	
-	
 	
 	/**
      * Method to set new item ordering as first or last.
@@ -213,7 +227,6 @@ class FlowerModelSakura extends AKModelAdmin
 		// "first" or "last"
 		parent::setOrderPosition($table, 'last') ;
 	}
-	
 	
 	/**
      * Function that do something after save.

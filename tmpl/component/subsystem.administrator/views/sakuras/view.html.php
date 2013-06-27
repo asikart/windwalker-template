@@ -23,19 +23,63 @@ class FlowerViewSakuras extends AKViewList
 	 * @since	1.6
 	 */
 	protected 	$text_prefix = 'COM_FLOWER';
+    
+    /**
+     * Item list of table view.
+     *
+     * @var array   
+     */
 	protected 	$items;
+    
+    /**
+     * Pagination object of table view
+     *
+     * @var JPagination 
+     */
 	protected 	$pagination;
+    
+    /**
+     * Model state to get some configuration.
+     *
+     * @var JRegistry 
+     */
 	protected 	$state;
 	
-	
-	public		$option 	= 'com_flower' ;
-	public		$list_name 	= 'sakuras' ;
-	public		$item_name 	= 'sakura' ;
-	public	 	$no_trash 	= false ;
-	public		$sort_fields ;
-
-	
-	
+	/**
+     * The Component option name.
+     *
+     * @var    string 
+     */
+	protected    $option 	= 'com_flower' ;
+    
+    /**
+     * The URL view list variable.
+     *
+     * @var    string 
+     */
+	protected    $list_name 	= 'sakuras' ;
+    
+    /**
+     * The URL view item variable.
+     *
+     * @var    string 
+     */
+	protected    $item_name 	= 'sakura' ;
+    
+    /**
+     * Do not show trash button.
+     *
+     * @var boolean 
+     */
+	protected    $no_trash 	= false ;
+    
+    /**
+     * Sort fields of table view.
+     *
+     * @var array   
+     */
+	protected    $sort_fields ;
+    
 	/**
 	 * Display the view
 	 */
@@ -56,9 +100,7 @@ class FlowerViewSakuras extends AKViewList
 		
 		parent::displayWithPanel($tpl);
 	}
-
-	
-	
+    
 	/**
 	 * Add the page title and toolbar.
 	 *
@@ -75,7 +117,6 @@ class FlowerViewSakuras extends AKViewList
 		
 		parent::addToolbar();
 	}
-	
 	
 	/**
 	 * Returns an array of fields the table can be sorted by
@@ -102,6 +143,4 @@ class FlowerViewSakuras extends AKViewList
 		
 		return $this->sort_fields ;
 	}
-	
-	
 }

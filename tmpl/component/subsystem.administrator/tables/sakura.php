@@ -19,7 +19,7 @@ jimport('joomla.database.tablenested');
 class FlowerTableSakura extends JTable
 {
 	/**
-	 * For API Request get SDK id
+	 * For API Request get SDK id.
 	 *
 	 * @var string 
 	 */

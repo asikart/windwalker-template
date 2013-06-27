@@ -19,11 +19,26 @@ include_once AKPATH_COMPONENT.'/controlleradmin.php' ;
  */
 class FlowerControllerSakuras extends AKControllerAdmin
 {
-	public $view_list = 'sakuras' ;
-	public $view_item = 'sakura' ;
-	public $component = 'flower';
-	
-	
+    /**
+     * The URL view list variable.
+     *
+     * @var    string 
+     */
+	protected $view_list = 'sakuras' ;
+    
+    /**
+     * The URL view item variable.
+     *
+     * @var    string 
+     */
+	protected $view_item = 'sakura' ;
+    
+    /**
+     * The Component name.
+     *
+     * @var    string 
+     */
+	protected $component = 'flower';
 	
 	/**
      * Constructor.

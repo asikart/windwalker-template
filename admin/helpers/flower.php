@@ -71,13 +71,13 @@ class FlowerHelper extends AKProxy
 		
 	}
 	
-	
-	
-	/*
-	 * function addSubmenu
-	 * @param $menu
-	 */
-	
+	/**
+     * Add Submenu entry.
+     * 
+     * @param   string  $title  Menu title.
+     * @param   string  $url    Link url.
+     * @param   string  $active A boolean to detect active?
+     */
 	public static function addSubmenuEntry($title, $url = '#', $active = false)
 	{
 		if( JVERSION >= 3 ) {
@@ -86,8 +86,6 @@ class FlowerHelper extends AKProxy
 			JSubMenuHelper::addEntry( $title, $url, $active );
 		}
 	}
-	
-	
 	
 	/**
 	 * Gets a list of the actions that can be performed.
@@ -119,12 +117,9 @@ class FlowerHelper extends AKProxy
 		return $result;
 	}
 	
-	
 	/*
-	 * function getVersion
-	 * @param 
+	 * Get Joomla! version.
 	 */
-	
 	public static function getVersion()
 	{
 		return JVERSION ;

@@ -24,14 +24,47 @@ class FlowerModelSakuras extends AKModelList
 	 */
 	protected 	$text_prefix = 'COM_FLOWER';
 	
-	public 		$component = 'flower' ;
-	public 		$item_name = 'sakura' ;
-	public 		$list_name = 'sakuras' ;
+    /**
+     * The Component name.
+     *
+     * @var    string 
+     */
+	protected    $component = 'flower' ;
+    
+    /**
+     * The URL view item variable.
+     *
+     * @var    string 
+     */
+	protected    $item_name = 'sakura' ;
+    
+    /**
+     * The URL view list variable.
+     *
+     * @var    string 
+     */
+	protected    $list_name = 'sakuras' ;
 	
-	public      $request_item = '';
-    public      $request_list = '';
+    /**
+     * The URL view list to request remote data (only use in API system).
+     *
+     * @var    string 
+     */
+	public    $request_item = '';
+    
+    /**
+     * The URL view item to request remote data (only use in API system).
+     *
+     * @var    string 
+     */
+    public    $request_list = '';
 	
-	public 		$default_method = 'getItem';
+    /**
+     * The default method to call. (only use in API system).
+     *
+     * @var    string 
+     */
+	public    $default_method = 'getItems';
 	
     /**
      * Constructor.
@@ -73,8 +106,6 @@ class FlowerModelSakuras extends AKModelList
         parent::__construct($config);
     }
 	
-	
-	
 	/**
 	 * Returns a reference to the a Table object, always creating it.
 	 *
@@ -88,9 +119,7 @@ class FlowerModelSakuras extends AKModelList
 	{
 		return parent::getTable( $type , $prefix , $config );
 	}
-	
-
-
+    
 	/**
 	 * Method to auto-populate the model state.
 	 *
@@ -225,14 +254,12 @@ class FlowerModelSakuras extends AKModelList
 		return parent::getStoreId($id);
 	}
 	
-	
 	/**
 	 * Method to get list page filter form.
 	 *
 	 * @return	object		JForm object.
 	 * @since	2.5
 	 */
-	
 	public function getFilter()
 	{
 		//$filter = parent::getFilter();
@@ -240,8 +267,6 @@ class FlowerModelSakuras extends AKModelList
 		//return $filter ;
 	}
 	
-	
-
 	/**
 	 * Build an SQL query to load the list data.
 	 *

@@ -19,12 +19,27 @@ include_once AKPATH_COMPONENT.'/controllerform.php' ;
  */
 class FlowerControllerSakura extends AKControllerForm
 {
-	
-	public $view_list = 'sakuras' ;
-	public $view_item = 'sakura' ;
-	public $component = 'flower';
-
-	
+	/**
+     * The URL view list variable.
+     *
+     * @var    string 
+     */
+	protected $view_list = 'sakuras' ;
+    
+    /**
+     * The URL view item variable.
+     *
+     * @var    string 
+     */
+	protected $view_item = 'sakura' ;
+    
+    /**
+     * The Component name.
+     *
+     * @var    string 
+     */
+	protected $component = 'flower';
+    
 	/**
      * Constructor.
      *
@@ -45,9 +60,7 @@ class FlowerControllerSakura extends AKControllerForm
 		
         parent::__construct();
     }
-
-	
-	
+    
 	/**
      * Function that allows child controller access to model data
      * after the data has been saved.
