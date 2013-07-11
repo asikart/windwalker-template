@@ -86,9 +86,9 @@ if( JVERSION >= 3 ) {
 			$ordering	= ($listOrder == 'a.ordering');
 			$canCreate	= $user->authorise('core.create',		'com_flower');
 			$canEdit	= $user->authorise('core.edit',			'com_flower.sakura.'.$item->a_id);
-			$canCheckin	= $user->authorise('core.manage',		'com_flower.sakura.'.$item->a_id) || $item->a_checked_out == $userId || $item->a_checked_out == 0;;
+			$canCheckin	= $user->authorise('core.edit.state',	'com_flower.sakura.'.$item->a_id) || $item->a_checked_out == $userId || $item->a_checked_out == 0;;
 			$canChange	= $user->authorise('core.edit.state',	'com_flower.sakura.'.$item->a_id) && $canCheckin;
-			$canEditOwn = $user->authorise('core.edit.own',		'com_flower.sakura.'.$item->a_id) && $item->created_by == $userId;
+			$canEditOwn = $user->authorise('core.edit.own',		'com_flower.sakura.'.$item->a_id) && $item->a_created_by == $userId;
 			
 			if($nested && $item->a_id == 1){
 				$item->a_title = JText::_('JGLOBAL_ROOT') ;

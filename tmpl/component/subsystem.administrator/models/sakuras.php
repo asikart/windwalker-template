@@ -114,22 +114,8 @@ class FlowerModelSakuras extends AKModelList
 		
         parent::__construct($config);
     }
-	
-	/**
-	 * Returns a reference to the a Table object, always creating it.
-	 *
-	 * @param	type	The table type to instantiate
-	 * @param	string	A prefix for the table class name. Optional.
-	 * @param	array	Configuration array for model. Optional.
-	 * @return	JTable	A database object
-	 * @since	1.6
-	 */
-	public function getTable($type = null, $prefix = null, $config = array())
-	{
-		return parent::getTable( $type , $prefix , $config );
-	}
     
-	/**
+    /**
 	 * Method to auto-populate the model state.
 	 *
 	 * Note. Calling getState in this method will result in recursion.
@@ -142,37 +128,7 @@ class FlowerModelSakuras extends AKModelList
 		parent::populateState($ordering, 'asc');
 	}
     
-	/**
-	 * Method to get a store id based on model configuration state.
-	 *
-	 * This is necessary because the model is used by the component and
-	 * different modules that might need different sets of data or different
-	 * ordering requirements.
-	 *
-	 * @param	string		$id	A prefix for the store id.
-	 * @return	string		A store id.
-	 * @since	1.6
-	 */
-	protected function getStoreId($id = '')
-	{
-		return parent::getStoreId($id);
-	}
-	
-	/**
-	 * Method to get list page filter form.
-	 *
-	 * @return	object		JForm object.
-	 * @since	2.5
-	 */
-	
-	public function getFilter()
-	{
-		$filter = parent::getFilter();
-		
-		return $filter ;
-	}
-
-	/**
+    /**
 	 * Build an SQL query to load the list data.
 	 *
 	 * @return	JDatabaseQuery
@@ -340,5 +296,49 @@ class FlowerModelSakuras extends AKModelList
 		
 		
 		return $q ;
+	}
+    
+    /**
+	 * Returns a reference to the a Table object, always creating it.
+	 *
+	 * @param	type	The table type to instantiate
+	 * @param	string	A prefix for the table class name. Optional.
+	 * @param	array	Configuration array for model. Optional.
+	 * @return	JTable	A database object
+	 * @since	1.6
+	 */
+	public function getTable($type = null, $prefix = null, $config = array())
+	{
+		return parent::getTable( $type , $prefix , $config );
+	}
+    
+	/**
+	 * Method to get a store id based on model configuration state.
+	 *
+	 * This is necessary because the model is used by the component and
+	 * different modules that might need different sets of data or different
+	 * ordering requirements.
+	 *
+	 * @param	string		$id	A prefix for the store id.
+	 * @return	string		A store id.
+	 * @since	1.6
+	 */
+	protected function getStoreId($id = '')
+	{
+		return parent::getStoreId($id);
+	}
+	
+	/**
+	 * Method to get list page filter form.
+	 *
+	 * @return	object		JForm object.
+	 * @since	2.5
+	 */
+	
+	public function getFilter()
+	{
+		$filter = parent::getFilter();
+		
+		return $filter ;
 	}
 }

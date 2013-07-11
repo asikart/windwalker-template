@@ -147,9 +147,9 @@ if( JVERSION >= 3 ) {
 		
 		$ordering	= ($listOrder == $orderCol);
 		$canEdit	= $user->authorise('core.edit',			'com_flower.sakura.'.$item->a_id);
-		$canCheckin	= $user->authorise('core.manage',		'com_flower.sakura.'.$item->a_id) || $item->a_checked_out == $userId || $item->a_checked_out == 0;
+		$canCheckin	= $user->authorise('core.edit.state',	'com_flower.sakura.'.$item->a_id) || $item->a_checked_out == $userId || $item->a_checked_out == 0;
 		$canChange	= $user->authorise('core.edit.state',	'com_flower.sakura.'.$item->a_id) && $canCheckin;
-		$canEditOwn = $user->authorise('core.edit.own',		'com_flower.sakura.'.$item->a_id) && $item->get('c_id') == $userId;
+		$canEditOwn = $user->authorise('core.edit.own',		'com_flower.sakura.'.$item->a_id) && $item->get('a_created_by') == $userId;
 		
 		
 		

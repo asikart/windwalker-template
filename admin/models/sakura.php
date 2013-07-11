@@ -69,21 +69,108 @@ class FlowerModelSakura extends AKModelAdmin
      */
 	public    $default_method = 'getItem';
 	
-	/**
-	 * Returns a reference to the a Table object, always creating it.
+    /**
+	 * Method to auto-populate the model state.
 	 *
-	 * @param	type	The table type to instantiate
-	 * @param	string	A prefix for the table class name. Optional.
-	 * @param	array	Configuration array for model. Optional.
-	 * @return	JTable	A database object
+	 * Note. Calling getState in this method will result in recursion.
+	 *
 	 * @since	1.6
 	 */
-	public function getTable($type = null, $prefix = null, $config = array())
-	{	
-		return parent::getTable( $type , $prefix , $config );
+	protected function populateState()
+	{
+		$this->setState('CCKEngine.enabled', false);
+		
+		parent::populateState();
+	}
+    
+    /**
+	 * Prepare and sanitise the table prior to saving.
+	 *
+	 * @since	1.6
+	 */
+	protected function prepareTable(&$table)
+	{
+		parent::prepareTable($table);
+	}
+    
+    /**
+     * Function that do something after save.
+     *
+     * @param   object  $data	The data object.
+     *
+     * @return  boolean	Save success or not. 
+     */
+	public function postSaveHook($data = null)
+	{
+		return true ;
+	}
+    
+    /**
+	 * Method to get a single record.
+	 *
+	 * @param	integer	The id of the primary key.
+	 *
+	 * @return	mixed	Object on success, false on failure.
+	 * @since	1.6
+	 */
+	public function getItem($pk = null)
+	{
+		if($item = parent::getItem($pk)){
+			
+			
+			
+			return $item ;	
+		}
+
+		return false;
 	}
 	
 	/**
+	 * A protected method to get a set of ordering conditions.
+	 *
+	 * @param   object	A record object.
+	 *
+	 * @return  array  An array of conditions to add to add to ordering queries.
+	 * @since   1.6
+	 */
+	protected function getReorderConditions($table)
+	{
+		return parent::getReorderConditions($table) ;
+	}
+	
+	/**
+     * Method to set new item ordering as first or last.
+     * 
+     * @param   JTable  $table      Item table to save.
+     * @param   string  $position   "first" to set first or other are set to last.
+     *
+     * @return  type    
+     */
+	public function setOrderPosition($table, $position = null)
+	{
+		// "first" or "last"
+		parent::setOrderPosition($table, 'last') ;
+	}
+    
+    /**
+     * Method to allow derived classes to preprocess the form.
+     *
+     * @param   JForm   $form   A JForm object.
+     * @param   mixed   $data   The data expected for the form.
+     * @param   string  $group  The name of the plugin group to import (defaults to "content").
+     *
+     * @return  void 
+     *
+     * @see     JFormField
+     * @since   11.1
+     * @throws  Exception if there is an error in the form event.
+     */
+    protected function preprocessForm(JForm $form, $data, $group = 'content')
+	{
+		return parent::preprocessForm($form, $data, $group);
+	}
+    
+    /**
 	 * Method to get the record form.
 	 *
 	 * @param	array	$data		An optional array of data for the form to interogate.
@@ -96,6 +183,36 @@ class FlowerModelSakura extends AKModelAdmin
 		$form = parent::getForm($data, $loadData) ;
 		
 		return $form ;
+	}
+    
+    /**
+	 * Method to get the data that should be injected in the form.
+	 *
+	 * @return	mixed	The data for the form.
+	 * @since	1.6
+	 */
+	protected function loadFormData()
+	{
+		// Set data in session, and parent loadFormData can load it.
+		// JFactory::getApplication()->setUserState("com_flower.edit.sakura.data", array());
+		
+		$data = parent::loadFormData();
+		
+		return $data ;
+	}
+    
+	/**
+	 * Returns a reference to the a Table object, always creating it.
+	 *
+	 * @param	type	The table type to instantiate
+	 * @param	string	A prefix for the table class name. Optional.
+	 * @param	array	Configuration array for model. Optional.
+	 * @return	JTable	A database object
+	 * @since	1.6
+	 */
+	public function getTable($type = null, $prefix = null, $config = array())
+	{	
+		return parent::getTable( $type , $prefix , $config );
 	}
 	
 	/**
@@ -124,122 +241,5 @@ class FlowerModelSakura extends AKModelAdmin
 		$fields = parent::getFieldsGroup();
 		
 		return $fields ;
-	}
-	
-	/**
-	 * Method to get the data that should be injected in the form.
-	 *
-	 * @return	mixed	The data for the form.
-	 * @since	1.6
-	 */
-	protected function loadFormData()
-	{
-		// Set data in session, and parent loadFormData can load it.
-		// JFactory::getApplication()->setUserState("com_flower.edit.sakura.data", array());
-		
-		$data = parent::loadFormData();
-		
-		return $data ;
-	}
-    
-	/**
-	 * Method to get a single record.
-	 *
-	 * @param	integer	The id of the primary key.
-	 *
-	 * @return	mixed	Object on success, false on failure.
-	 * @since	1.6
-	 */
-	public function getItem($pk = null)
-	{
-		if($item = parent::getItem($pk)){
-			
-			
-			
-			return $item ;	
-		}
-
-		return false;
-	}
-	
-	/**
-	 * Method to auto-populate the model state.
-	 *
-	 * Note. Calling getState in this method will result in recursion.
-	 *
-	 * @since	1.6
-	 */
-	protected function populateState()
-	{
-		$this->setState('CCKEngine.enabled', false);
-		
-		parent::populateState();
-	}
-	
-	/**
-     * Method to allow derived classes to preprocess the form.
-     *
-     * @param   JForm   $form   A JForm object.
-     * @param   mixed   $data   The data expected for the form.
-     * @param   string  $group  The name of the plugin group to import (defaults to "content").
-     *
-     * @return  void 
-     *
-     * @see     JFormField
-     * @since   11.1
-     * @throws  Exception if there is an error in the form event.
-     */
-    protected function preprocessForm(JForm $form, $data, $group = 'content')
-	{
-		return parent::preprocessForm($form, $data, $group);
-	}
-	
-	/**
-	 * A protected method to get a set of ordering conditions.
-	 *
-	 * @param   object	A record object.
-	 *
-	 * @return  array  An array of conditions to add to add to ordering queries.
-	 * @since   1.6
-	 */
-	protected function getReorderConditions($table)
-	{
-		return parent::getReorderConditions($table) ;
-	}
-	
-	/**
-	 * Prepare and sanitise the table prior to saving.
-	 *
-	 * @since	1.6
-	 */
-	protected function prepareTable(&$table)
-	{
-		parent::prepareTable($table);
-	}
-	
-	/**
-     * Method to set new item ordering as first or last.
-     * 
-     * @param   JTable  $table      Item table to save.
-     * @param   string  $position   "first" to set first or other are set to last.
-     *
-     * @return  type    
-     */
-	public function setOrderPosition($table, $position = null)
-	{
-		// "first" or "last"
-		parent::setOrderPosition($table, 'last') ;
-	}
-	
-	/**
-     * Function that do something after save.
-     *
-     * @param   object  $data	The data object.
-     *
-     * @return  boolean	Save success or not. 
-     */
-	public function postSaveHook($data = null)
-	{
-		return true ;
 	}
 }
