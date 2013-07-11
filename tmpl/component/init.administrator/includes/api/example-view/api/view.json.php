@@ -15,25 +15,19 @@ defined('_JEXEC') or die;
 jimport('joomla.application.component.view');
 
 if(!class_exists('AKViewApi')){
-	flowerLoader('admin://includes/api/api.init');
+    flowerLoader('admin://includes/api/api.init');
 }
 
 /**
- * View to edit
+ * View for API System
  */
 class FlowerViewApi extends AKViewApi
 {
-	protected $state;
-	protected $item;
-	protected $form;
-
-	/**
-	 * Display the view
-	 */
-	public function display($tpl = null)
-	{
-		parent::display($tpl);
-	}
-
-
+    /**
+     * Display the view
+     */
+    public function display($tpl = null)
+    {
+        parent::display($tpl);
+    }
 }

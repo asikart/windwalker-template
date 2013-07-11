@@ -11,9 +11,9 @@
 // no direct access
 defined('_JEXEC') or die;
 
-$doc 	= JFactory::getDocument();
-$app 	= JFactory::getApplication();
-$lang 	= JFactory::getLanguage();
+$doc     = JFactory::getDocument();
+$app     = JFactory::getApplication();
+$lang     = JFactory::getLanguage();
 
 
 
@@ -29,23 +29,23 @@ AKHelper::_('path.setOption', 'com_flower') ;
 
 // Some useful settings
 if( $app->isSite() ){
-	
-	// Include Admin language as global language.
-	$lang->load('', JPATH_ADMINISTRATOR);
-	$lang->load('com_flower', JPATH_COMPONENT_ADMINISTRATOR );
-	FlowerHelper::_('lang.loadAll', $lang->getTag());
-	
-	
-	// Include Joomla! admin css
-	FlowerHelper::_('include.sortedStyle', 'includes/css');
-	
-	
-	// set Base to fix toolbar anchor bug
-	$doc->setBase( JFactory::getURI()->toString() );
-	
+    
+    // Include Admin language as global language.
+    $lang->load('', JPATH_ADMINISTRATOR);
+    $lang->load('com_flower', JPATH_COMPONENT_ADMINISTRATOR );
+    FlowerHelper::_('lang.loadAll', $lang->getTag());
+    
+    
+    // Include Joomla! admin css
+    FlowerHelper::_('include.sortedStyle', 'includes/css');
+    
+    
+    // set Base to fix toolbar anchor bug
+    $doc->setBase( JFactory::getURI()->toString() );
+    
 }else{
-	FlowerHelper::_('lang.loadAll', $lang->getTag());
-	FlowerHelper::_('include.sortedStyle', 'includes/css');
+    FlowerHelper::_('lang.loadAll', $lang->getTag());
+    FlowerHelper::_('include.sortedStyle', 'includes/css');
     
     // Include Fields
     JForm::addFieldPath( AKPATH_FORM.'/fields');
@@ -62,9 +62,9 @@ define('AKDEV', FlowerHelper::_('system.getConfig', 'system.development_mode', t
 
 /* API Client init 
 AKHelper::_('api.initClient', null , array(
-	'username' 	=> 'username' ,
-	'password' 	=> 'password' ,
-	'host' 		=> '' ,
-	'component' => 'com_flower'
+    'username'     => 'username' ,
+    'password'     => 'password' ,
+    'host'         => '' ,
+    'component' => 'com_flower'
 ) );
 */

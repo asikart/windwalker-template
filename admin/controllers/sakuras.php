@@ -27,23 +27,23 @@ class FlowerControllerSakuras extends AKControllerAdmin
      *
      * @var    string 
      */
-	protected $view_list = 'sakuras' ;
+    protected $view_list = 'sakuras' ;
     
     /**
      * The URL view item variable.
      *
      * @var    string 
      */
-	protected $view_item = 'sakura' ;
+    protected $view_item = 'sakura' ;
     
     /**
      * The Component name.
      *
      * @var    string 
      */
-	protected $component = 'flower';
-	
-	/**
+    protected $component = 'flower';
+    
+    /**
      * Constructor.
      *
      * @param   array  $config  An optional associative array of configuration settings.
@@ -52,11 +52,11 @@ class FlowerControllerSakuras extends AKControllerAdmin
      * @since   11.1
      */
     function __construct() {
-		
-		$this->redirect_tasks = array(
-			'save', 'cancel', 'publish', 'unpublish', 'delete'
-		);
-		
+        
+        $this->redirect_tasks = array(
+            'save', 'cancel', 'publish', 'unpublish', 'delete'
+        );
+        
         parent::__construct();
     }
 }

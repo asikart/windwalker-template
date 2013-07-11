@@ -20,33 +20,33 @@ JFormHelper::loadFieldClass('itemlist');
  */
 class JFormFieldSakura_List extends JFormFieldItemlist
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var		string
-	 */
-	public $type = 'Sakura_List';
-	
-	/**
+    /**
+     * The form field type.
+     *
+     * @var string
+     */
+    public $type = 'Sakura_List';
+    
+    /**
      * List name.
      *
      * @var string 
      */
-	protected $view_list = 'sakuras' ;
-	
+    protected $view_list = 'sakuras' ;
+    
     /**
      * Item name.
      *
      * @var string 
      */
-	protected $view_item = 'sakura' ;
-	
+    protected $view_item = 'sakura' ;
+    
     /**
      * Extension name, eg: com_content.
      *
      * @var string 
      */
-	protected $extension = 'com_flower' ;
+    protected $extension = 'com_flower' ;
     
     /**
      * Set the published column name in table.

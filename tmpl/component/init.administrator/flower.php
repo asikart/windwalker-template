@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 
 // Access check.
 if (!JFactory::getUser()->authorise('core.manage', 'com_flower')) {
-	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+    return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
 // init
@@ -22,6 +22,6 @@ include_once JPATH_COMPONENT_ADMINISTRATOR.'/includes/init.php';
 // Include dependancies
 jimport('joomla.application.component.controller');
 
-$controller	= JControllerLegacy::getInstance('Flower');
+$controller    = JControllerLegacy::getInstance('Flower');
 $controller->execute( JFactory::getApplication()->input->get('task') );
 $controller->redirect();

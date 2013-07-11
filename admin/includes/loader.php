@@ -14,5 +14,5 @@ defined('_JEXEC') or die;
 
 function flowerLoader($uri)
 {
-	return FlowerHelper::_('loader.import', $uri) ;
+    return FlowerHelper::_('loader.import', $uri) ;
 }

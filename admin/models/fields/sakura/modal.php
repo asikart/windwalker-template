@@ -20,18 +20,33 @@ JFormHelper::loadFieldClass('Modal');
  */
 class JFormFieldSakura_Modal extends JFormFieldModal
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var		string
-	 * @since	1.6
-	 */
-	protected $type = 'Sakura_Modal';
-	
-	protected $view_list = 'sakuras' ;
-	
-	protected $view_item = 'sakura' ;
-	
-	protected $extension = 'com_flower' ;
-	
+    /**
+     * The form field type.
+     *
+     * @var string
+     * @since    1.6
+     */
+    protected $type = 'Sakura_Modal';
+    
+    /**
+     * List name.
+     *
+     * @var string 
+     */
+    protected $view_list = 'sakuras' ;
+    
+    /**
+     * Item name.
+     *
+     * @var string 
+     */
+    protected $view_item = 'sakura' ;
+    
+    /**
+     * Extension name, eg: com_content.
+     *
+     * @var string 
+     */
+    protected $extension = 'com_flower' ;
+    
 }
