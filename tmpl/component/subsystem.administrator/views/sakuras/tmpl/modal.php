@@ -83,7 +83,7 @@ if( JVERSION >= 3 ) {
 			
 			$item = new JObject($item);
 			
-			$ordering	= ($listOrder == 'a.ordering');
+			$ordering	= ($listOrder == $orderCol);
 			$canCreate	= $user->authorise('core.create',		'com_flower');
 			$canEdit	= $user->authorise('core.edit',			'com_flower.sakura.'.$item->a_id);
 			$canCheckin	= $user->authorise('core.edit.state',	'com_flower.sakura.'.$item->a_id) || $item->a_checked_out == $userId || $item->a_checked_out == 0;;
