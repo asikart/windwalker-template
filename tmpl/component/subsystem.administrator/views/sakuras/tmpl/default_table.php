@@ -210,7 +210,7 @@ if( JVERSION >= 3 ) {
 				$disableClassName = '';
 				$disabledLabel	  = '';
 
-				if (!$saveOrder) :
+				if (!$saveOrder || !$canOrder) :
 					$disabledLabel    = JText::_('JORDERINGDISABLED');
 					$disableClassName = 'inactive tip-top';
 				endif; ?>

@@ -46,6 +46,9 @@ if( $app->isSite() ){
 }else{
 	FlowerHelper::_('lang.loadAll', $lang->getTag());
 	FlowerHelper::_('include.sortedStyle', 'includes/css');
+    
+    // Include Fields
+    JForm::addFieldPath( AKPATH_FORM.'/fields');
 }
 
 
