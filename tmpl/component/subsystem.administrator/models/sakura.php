@@ -22,7 +22,9 @@ include_once AKPATH_COMPONENT.'/modeladmin.php' ;
 class FlowerModelSakura extends AKModelAdmin
 {
     /**
-     * @var        string    The prefix to use with controller messages.
+     * The prefix to use with controller messages.
+     *
+     * @var      string
      * @since    1.6
      */
     protected     $text_prefix = 'COM_FLOWER';

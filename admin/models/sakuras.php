@@ -107,7 +107,7 @@ class FlowerModelSakuras extends AKModelList
         
         // Other settings
         // ========================================================================
-        $config['fulltext_search']     = true ;
+        $config['fulltext_search']  = true ;
         
         $config['core_sidebar']     = false ;
         
@@ -142,12 +142,12 @@ class FlowerModelSakuras extends AKModelList
         // ========================================================================
         
         // Create a new query object.
-        $db            = $this->getDbo();
-        $q            = $db->getQuery(true);
-        $order         = $this->getState('list.ordering' , 'a.id');
-        $dir        = $this->getState('list.direction', 'asc');
-        $prefix     = $this->getState('list.orderingPrefix', array()) ;
-        $orderCol    = $this->getState('list.orderCol','a.ordering') ;
+        $db        = $this->getDbo();
+        $q         = $db->getQuery(true);
+        $order     = $this->getState('list.ordering' , 'a.id');
+        $dir       = $this->getState('list.direction', 'asc');
+        $prefix    = $this->getState('list.orderingPrefix', array()) ;
+        $orderCol  = $this->getState('list.orderCol','a.ordering') ;
 
         // Filter and Search
         $filter = $this->getState('filter',array()) ;
@@ -234,10 +234,10 @@ class FlowerModelSakuras extends AKModelList
         //build query
         $q->select($select)
             ->from('#__flower_sakuras AS a')
-            ->leftJoin('#__categories     AS b ON a.catid = b.id')
-            ->leftJoin('#__users         AS c ON a.created_by = c.id')
-            ->leftJoin('#__viewlevels     AS d ON a.access = d.id')
-            ->leftJoin('#__languages     AS e ON a.language = e.lang_code')
+            ->leftJoin('#__categories  AS b ON a.catid = b.id')
+            ->leftJoin('#__users       AS c ON a.created_by = c.id')
+            ->leftJoin('#__viewlevels  AS d ON a.access = d.id')
+            ->leftJoin('#__languages   AS e ON a.language = e.lang_code')
             //->where("")
             ->order( "{$prefix}{$order} {$dir}" ) ;
         

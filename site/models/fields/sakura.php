@@ -19,46 +19,46 @@ JFormHelper::loadFieldClass('list');
  */
 class JFormFieldSakura extends JFormFieldList
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var		string
-	 * @since	1.6
-	 */
-	public $type = 'Sakura';
-	
-	public $value ;
-	
-	public $name ; 
-	
-	protected function getOptions()
-	{
-		// Initialise variables.
+    /**
+     * The form field type.
+     *
+     * @var        string
+     * @since    1.6
+     */
+    public $type = 'Sakura';
+    
+    public $value ;
+    
+    public $name ; 
+    
+    protected function getOptions()
+    {
+        // Initialise variables.
         $options = array();
         $name = (string) $this->element['name'];
-		
-		$db = JFactory::getDbo();
-		$q = $db->getQuery(true) ;
-		
-		$q->select('*')
-			->from('#__flower_sakuras')
-			->where('published >= 1')
-			;
-		
-		$db->setQuery($q);
-		$items = $db->loadObjectList();
-		
-		$items = $items ? $items : array() ;
-		
-		foreach( $items as $item ):
-			$item = new JObject($item);
-			$options[] = JHtml::_('select.option', $item->id, $item->title );
-		endforeach;
-		
-		// Merge any additional options in the XML definition.
+        
+        $db = JFactory::getDbo();
+        $q = $db->getQuery(true) ;
+        
+        $q->select('*')
+            ->from('#__flower_sakuras')
+            ->where('published >= 1')
+            ;
+        
+        $db->setQuery($q);
+        $items = $db->loadObjectList();
+        
+        $items = $items ? $items : array() ;
+        
+        foreach( $items as $item ):
+            $item = new JObject($item);
+            $options[] = JHtml::_('select.option', $item->id, $item->title );
+        endforeach;
+        
+        // Merge any additional options in the XML definition.
         $options = array_merge(parent::getOptions(), $options);
-		
-		return $options;
-	}
-	
+        
+        return $options;
+    }
+    
 }

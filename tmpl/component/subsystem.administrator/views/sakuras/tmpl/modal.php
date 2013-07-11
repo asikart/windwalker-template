@@ -20,6 +20,7 @@ $userId     = $user->get('id');
 $function   = JRequest::getCmd('function', 'jSelectArticle');
 $listOrder  = $this->state->get('list.ordering');
 $listDirn   = $this->state->get('list.direction');
+$orderCol   = $this->state->get('list.orderCol', 'a.ordering') ;
 $canOrder   = $user->authorise('core.edit.state', 'com_flower');
 $saveOrder  = $listOrder == 'a.ordering';
 $nested     = $this->state->get('items.nested') ;
