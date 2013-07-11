@@ -124,51 +124,6 @@ class FlowerModelSakura extends AKModelAdmin
 
 		return false;
 	}
-	
-	/**
-	 * A protected method to get a set of ordering conditions.
-	 *
-	 * @param   object	A record object.
-	 *
-	 * @return  array  An array of conditions to add to add to ordering queries.
-	 * @since   1.6
-	 */
-	protected function getReorderConditions($table)
-	{
-		return parent::getReorderConditions($table) ;
-	}
-	
-	/**
-     * Method to set new item ordering as first or last.
-     * 
-     * @param   JTable  $table      Item table to save.
-     * @param   string  $position   "first" to set first or other are set to last.
-     *
-     * @return  type    
-     */
-	public function setOrderPosition($table, $position = null)
-	{
-		// "first" or "last"
-		parent::setOrderPosition($table, 'last') ;
-	}
-    
-    /**
-     * Method to allow derived classes to preprocess the form.
-     *
-     * @param   JForm   $form   A JForm object.
-     * @param   mixed   $data   The data expected for the form.
-     * @param   string  $group  The name of the plugin group to import (defaults to "content").
-     *
-     * @return  void 
-     *
-     * @see     JFormField
-     * @since   11.1
-     * @throws  Exception if there is an error in the form event.
-     */
-    protected function preprocessForm(JForm $form, $data, $group = 'content')
-	{
-		return parent::preprocessForm($form, $data, $group);
-	}
     
     /**
 	 * Method to get the record form.
@@ -199,6 +154,51 @@ class FlowerModelSakura extends AKModelAdmin
 		$data = parent::loadFormData();
 		
 		return $data ;
+	}
+    
+    /**
+     * Method to allow derived classes to preprocess the form.
+     *
+     * @param   JForm   $form   A JForm object.
+     * @param   mixed   $data   The data expected for the form.
+     * @param   string  $group  The name of the plugin group to import (defaults to "content").
+     *
+     * @return  void 
+     *
+     * @see     JFormField
+     * @since   11.1
+     * @throws  Exception if there is an error in the form event.
+     */
+    protected function preprocessForm(JForm $form, $data, $group = 'content')
+	{
+		return parent::preprocessForm($form, $data, $group);
+	}
+    
+    /**
+	 * A protected method to get a set of ordering conditions.
+	 *
+	 * @param   object	A record object.
+	 *
+	 * @return  array  An array of conditions to add to add to ordering queries.
+	 * @since   1.6
+	 */
+	protected function getReorderConditions($table)
+	{
+		return parent::getReorderConditions($table) ;
+	}
+	
+	/**
+     * Method to set new item ordering as first or last.
+     * 
+     * @param   JTable  $table      Item table to save.
+     * @param   string  $position   "first" to set first or other are set to last.
+     *
+     * @return  type    
+     */
+	public function setOrderPosition($table, $position = null)
+	{
+		// "first" or "last"
+		parent::setOrderPosition($table, 'last') ;
 	}
     
 	/**
