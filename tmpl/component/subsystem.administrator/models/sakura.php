@@ -246,4 +246,18 @@ class FlowerModelSakura extends AKModelAdmin
         
         return $fields ;
     }
+    
+    /**
+     * If category need authorize, we can write in this method.
+     *
+     * @param   int $record category record.
+     *
+     * @return  boolean Can edit or not.
+     */
+    public function canCategoryCreate($record)
+    {
+        $user = JFactory::getUser() ;
+        
+        return $user->authorise('core.create', $this->option . '.category.' . $record);
+    }
 }
