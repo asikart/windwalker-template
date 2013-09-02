@@ -13,7 +13,7 @@ defined('_JEXEC') or die;
 
 $doc     = JFactory::getDocument();
 $app     = JFactory::getApplication();
-$lang     = JFactory::getLanguage();
+$lang    = JFactory::getLanguage();
 
 
 
