@@ -34,11 +34,9 @@ if( $app->isSite() ){
     $lang->load('', JPATH_ADMINISTRATOR);
     $lang->load('com_flower', JPATH_COMPONENT_ADMINISTRATOR );
     FlowerHelper::_('lang.loadAll', $lang->getTag());
-    
-    
+
     // Include Joomla! admin css
     FlowerHelper::_('include.sortedStyle', 'includes/css');
-    
     
     // set Base to fix toolbar anchor bug
     $doc->setBase( JFactory::getURI()->toString() );
@@ -46,11 +44,10 @@ if( $app->isSite() ){
 }else{
     FlowerHelper::_('lang.loadAll', $lang->getTag());
     FlowerHelper::_('include.sortedStyle', 'includes/css');
-    
-    // Include Fields
-    JForm::addFieldPath( AKPATH_FORM.'/fields');
 }
 
+// Include Fields
+JForm::addFieldPath( AKPATH_FORM.'/fields');
 
 // Detect version
 FlowerHelper::_('plugin.attachPlugins');
