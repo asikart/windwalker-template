@@ -243,7 +243,7 @@ class FlowerTableSakura extends JTable
                     ;
                 
                 $db->setQuery($q);
-                $db->query();
+                $db->execute();
             }
         }
         
