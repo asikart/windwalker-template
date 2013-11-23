@@ -90,7 +90,7 @@ class FlowerModelSakura extends AKModelAdmin
      *
      * @since    1.6
      */
-    protected function prepareTable(&$table)
+    protected function prepareTable($table)
     {
         parent::prepareTable($table);
     }
