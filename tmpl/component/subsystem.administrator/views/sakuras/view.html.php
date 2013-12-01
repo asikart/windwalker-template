@@ -102,7 +102,7 @@ class FlowerViewSakuras extends AKViewList
 		$this->filter     = $this->get('Filter');
 
 		// Check for errors.
-		//if (count($errors = $this->get('Errors')))
+		if (count($errors = $this->get('Errors')))
 		{
 			throw new Exception(implode("\n", $errors), 500);
 		}

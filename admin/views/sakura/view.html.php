@@ -85,7 +85,7 @@ class FlowerViewSakura extends AKViewItem
 		// Check for errors.
 		if (count($errors = $this->get('Errors')))
 		{
-			throw new Exception(implode("\n", $errors));
+			throw new Exception(implode("\n", $errors), 500);
 		}
 
 		parent::displayWithPanel($tpl);
