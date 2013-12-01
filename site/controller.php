@@ -14,29 +14,33 @@ defined('_JEXEC') or die;
  * Main Controller of Flower.
  *
  * @package     Joomla.Site
- * @subpackage  com_flower 
+ * @subpackage  com_flower
  */
 class FlowerController extends JControllerLegacy
 {
-    /**
-     * Method to display a view.
-     *
-     * @param    boolean    $cachable     If true, the view output will be cached
-     * @param    array      $urlparams    An array of safe url parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
-     *
-     * @return   JController   This object to support chaining.
-     * @since    1.5
-     */
-    public function display($cachable = false, $urlparams = false)
-    {
-        // Load the submenu.
-        FlowerHelper::addSubmenu(JRequest::getCmd('view', 'sakuras'));
+	/**
+	 * Typical view method for MVC based architecture
+	 *
+	 * This function is provide as a default implementation, in most cases
+	 * you will need to override it in your own controllers.
+	 *
+	 * @param   boolean  $cachable   If true, the view output will be cached
+	 * @param   array    $urlparams  An array of safe url parameters and their variable types, for valid values see {@link JFilterInput::clean()}.
+	 *
+	 * @return  JControllerLegacy  A JControllerLegacy object to support chaining.
+	 *
+	 * @since   12.2
+	 */
+	public function display($cachable = false, $urlparams = array())
+	{
+		// Load the submenu.
+		FlowerHelper::addSubmenu(JRequest::getCmd('view', 'sakuras'));
 
-        $view = JRequest::getCmd('view', 'sakuras');
-        JRequest::setVar('view', $view);
+		$view = JRequest::getCmd('view', 'sakuras');
+		JRequest::setVar('view', $view);
 
-        parent::display();
+		parent::display();
 
-        return $this;
-    }
+		return $this;
+	}
 }
