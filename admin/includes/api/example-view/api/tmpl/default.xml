@@ -1,25 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metadata>
-    <layout title="com_flower_api_title" option="com_flower_api_option">
-        <help
-            key = "COM_FLOWER_API_MENU_MANAGER_HELP"
-        />
-        <message>
-            <![CDATA[COM_FLOWER_API_MENU_MANAGER_DESC]]>
-        </message>
-    </layout>
+	<layout title="com_flower_api_title"
+	        option="com_flower_api_option">
+		<help
+				key="COM_FLOWER_API_MENU_MANAGER_HELP"
+				/>
+		<message>
+			<![CDATA[COM_FLOWER_API_MENU_MANAGER_DESC]]>
+		</message>
+	</layout>
 
-    <!-- Add fields to the request variables for the layout. -->
-    <fields name="request">
-        <fieldset name="request"
-            addfieldpath="/administrator/components/com_flower/models/fields">
+	<!-- Add fields to the request variables for the layout. -->
+	<fields name="request">
+		<fieldset name="request"
+		          addfieldpath="/administrator/components/com_flower/models/fields">
 
-            <field name="format" type="text"
-                label="COM_FLOWER_SELECT_SAKURA"
-                required="true"
-                description="CCOM_FLOWER_SELECT_SAKURA_DESC"
-                default="json"
-            />
-        </fieldset>
-    </fields>
+			<field name="format"
+			       type="text"
+			       label="COM_FLOWER_SELECT_SAKURA"
+			       required="true"
+			       description="CCOM_FLOWER_SELECT_SAKURA_DESC"
+			       default="json"
+					/>
+		</fieldset>
+	</fields>
 </metadata>

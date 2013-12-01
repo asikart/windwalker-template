@@ -49,9 +49,8 @@ class FlowerControllerSakura extends AKControllerForm
 	 * @see     JController
 	 * @since   11.1
 	 */
-	function __construct()
+	function __construct($config = array())
 	{
-
 		$this->allow_url_params = array(
 			'return'
 		);
@@ -60,7 +59,7 @@ class FlowerControllerSakura extends AKControllerForm
 			'save', 'cancel', 'publish', 'unpublish', 'delete'
 		);
 
-		parent::__construct();
+		parent::__construct($config);
 	}
 
 	/**
@@ -71,6 +70,7 @@ class FlowerControllerSakura extends AKControllerForm
 	 * @param   array  $validData The validated data.
 	 *
 	 * @return  void
+	 *
 	 * @since   11.1
 	 */
 	protected function postSaveHook(&$model, $validData = array())
