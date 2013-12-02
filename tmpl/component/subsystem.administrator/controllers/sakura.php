@@ -44,10 +44,11 @@ class FlowerControllerSakura extends AKControllerForm
 	/**
 	 * Constructor.
 	 *
-	 * @param   array $config An optional associative array of configuration settings.
+	 * @param   array  $config  An optional associative array of configuration settings.
 	 *
-	 * @see     JController
-	 * @since   11.1
+	 * @see     JControllerLegacy
+	 * @since   12.2
+	 * @throws  Exception
 	 */
 	function __construct($config = array())
 	{
@@ -66,14 +67,14 @@ class FlowerControllerSakura extends AKControllerForm
 	 * Function that allows child controller access to model data
 	 * after the data has been saved.
 	 *
-	 * @param   JModel &$model    The data model object.
-	 * @param   array  $validData The validated data.
+	 * @param   JModelLegacy  $model      The data model object.
+	 * @param   array         $validData  The validated data.
 	 *
 	 * @return  void
 	 *
-	 * @since   11.1
+	 * @since   12.2
 	 */
-	protected function postSaveHook(&$model, $validData = array())
+	protected function postSaveHook(JModelLegacy $model, $validData = array())
 	{
 		$result = $model->postSaveHook($validData);
 

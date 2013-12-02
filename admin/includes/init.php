@@ -54,6 +54,16 @@ FlowerHelper::_('plugin.attachPlugins');
 define('AKDEBUG', FlowerHelper::_('system.getConfig', 'system.debug', false, 'com_flower'));
 define('AKDEV',   FlowerHelper::_('system.getConfig', 'system.development_mode', true, 'com_flower'));
 
+if (AKDEBUG)
+{
+	JLoader::registerNamespace('Whoops', AKPATH_ADMIN . '/debugger');
+
+	$whoops  = new Whoops\Run;
+	$handler = new Whoops\Handler\PrettyPageHandler;
+
+	$whoops->pushHandler($handler);
+	$whoops->register();
+}
 
 /* API Client init 
 AKHelper::_('api.initClient', null , array(

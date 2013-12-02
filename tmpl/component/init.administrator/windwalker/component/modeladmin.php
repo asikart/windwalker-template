@@ -430,13 +430,7 @@ class AKModelAdmin extends JModelAdmin
 	}
 
 	/**
-	 * Prepare and sanitise the table data prior to saving.
-	 *
-	 * @param   JTable  $table  A reference to a JTable object.
-	 *
-	 * @return  void
-	 *
-	 * @since   12.2
+	 * Prepare and sanitise the table prior to saving.
 	 */
 	protected function prepareTable($table)
 	{
