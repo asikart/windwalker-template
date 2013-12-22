@@ -10,16 +10,22 @@
 // No direct access
 defined('_JEXEC') or die;
 
-include_once AKPATH_COMPONENT . '/controller.php';
-
 /**
  * Main Controller of Flower.
  *
  * @package     Joomla.Administrator
  * @subpackage  com_flower
  */
-class FlowerController extends AKController
+class FlowerController extends JControllerLegacy
 {
+	/**
+	 * The default view for the display method.
+	 *
+	 * @var    string
+	 * @since  12.2
+	 */
+	protected $default_view = 'sakura';
+
 	/**
 	 * Method to display a view.
 	 *
@@ -32,24 +38,8 @@ class FlowerController extends AKController
 	 */
 	public function display($cachable = false, $urlparams = false)
 	{
-		// Load the submenu.
-		$input = JFactory::getApplication()->input;
-		FlowerHelper::addSubmenu($input->get('view', 'sakuras'));
+		echo 'Display';
 
-		$view = $input->get('view', 'sakuras');
-		$input->set('view', $view);
-
-		parent::display();
-
-		// Debug
-		$doc = JFactory::getDocument();
-
-		if ((AKDEBUG || JDEBUG) && $doc->getType() == 'html')
-		{
-			echo '<hr style="clear:both;" />';
-			echo AKHelper::_('system.renderProfiler', 'WindWalker');
-		}
-
-		return $this;
+		// return parent::display($cachable, $urlparams);
 	}
 }
